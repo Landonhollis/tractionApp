@@ -1,0 +1,292 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-10-24",
+    "description": "Knowledge graph for the Traction app - tracks entities, relationships, screens, data, and actions"
+  },
+  "nodes": {
+    "screens": {
+      "auth": {
+        "id": "screen_auth",
+        "name": "Authentication Screen",
+        "type": "screen",
+        "path": "/app/auth.tsx",
+        "purpose": "User authentication entry point with email/password and OAuth",
+        "status": "implemented",
+        "implementedDate": "2025-10-24",
+        "features": [
+          "Email/password sign in",
+          "Email/password sign up",
+          "Google OAuth",
+          "Form validation",
+          "Error handling",
+          "Loading states",
+          "Theme support (light/dark)"
+        ],
+        "routes": {
+          "incoming": ["app_launch_unauthenticated", "session_expiration"],
+          "outgoing": ["home_screen_authenticated"]
+        },
+        "dependencies": ["AccountProvider", "authServices", "supabaseClient"]
+      },
+      "index": {
+        "id": "screen_index",
+        "name": "Index/Home Screen",
+        "type": "screen",
+        "path": "/app/index.tsx",
+        "purpose": "Main landing screen, redirects to auth if unauthenticated",
+        "status": "implemented",
+        "implementedDate": "2025-10-24",
+        "features": ["Authentication check", "Auto-redirect to auth"],
+        "dependencies": ["AccountProvider"]
+      }
+    },
+    "services": {
+      "authServices": {
+        "id": "service_auth",
+        "name": "Authentication Services",
+        "type": "service",
+        "path": "/services/authServices.ts",
+        "purpose": "Handles all authentication operations",
+        "status": "implemented",
+        "implementedDate": "2025-10-24",
+        "methods": [
+          "signUpWithEmail(email, password)",
+          "signInWithEmail(email, password)",
+          "signInWithGoogle()",
+          "createUserAccount(userId)",
+          "signOut()",
+          "requestPasswordReset(email)",
+          "updatePassword(newPassword)",
+          "getSession()",
+          "getUser()"
+        ],
+        "dependencies": ["supabaseClient"]
+      },
+      "accountProviderServices": {
+        "id": "service_account_provider",
+        "name": "Account Provider Services",
+        "type": "service",
+        "path": "/services/accountProviderServices.ts",
+        "purpose": "Manages account data and theme preferences",
+        "status": "existing",
+        "dependencies": ["supabaseClient"]
+      },
+      "supabaseClient": {
+        "id": "service_supabase",
+        "name": "Supabase Client",
+        "type": "service",
+        "path": "/services/supabaseClient.ts",
+        "purpose": "Configured Supabase client instance",
+        "status": "existing"
+      }
+    },
+    "providers": {
+      "AccountProvider": {
+        "id": "provider_account",
+        "name": "Account Provider",
+        "type": "context_provider",
+        "path": "/providers/AccountProvider.tsx",
+        "purpose": "Global authentication and account state management",
+        "status": "existing",
+        "provides": [
+          "isAuthenticated",
+          "userId",
+          "email",
+          "theme (ctn, ct)",
+          "themeLoading",
+          "setTheme()",
+          "loadAccountData()",
+          "ps() - theme-aware styling"
+        ],
+        "dependencies": ["supabaseClient", "authServices", "accountProviderServices"]
+      }
+    },
+    "database": {
+      "auth_users": {
+        "id": "table_auth_users",
+        "name": "auth.users",
+        "type": "database_table",
+        "schema": "auth",
+        "purpose": "Supabase Auth managed user authentication table",
+        "status": "system_managed",
+        "access": "read_only",
+        "columns": ["id", "email", "encrypted_password", "created_at", "email_confirmed_at", "last_sign_in_at", "raw_user_meta_data", "raw_app_meta_data"]
+      },
+      "accounts": {
+        "id": "table_accounts",
+        "name": "accounts",
+        "type": "database_table",
+        "schema": "public",
+        "purpose": "App-specific user account data and preferences",
+        "status": "implemented",
+        "implementedDate": "2025-10-24",
+        "migration": "create_accounts_table",
+        "columns": ["id", "user_id", "theme_name", "created_at", "updated_at"],
+        "triggers": ["on_auth_user_created", "update_accounts_updated_at"],
+        "rlsPolicies": {
+          "select": "Users can view their own account",
+          "update": "Users can update their own account",
+          "insert": "Service role only (via trigger)",
+          "delete": "Service role only"
+        }
+      }
+    },
+    "actions": {
+      "sign_up": {
+        "id": "action_sign_up",
+        "name": "Sign Up",
+        "type": "user_action",
+        "screen": "auth",
+        "flow": [
+          "User enters email and password",
+          "Client validates email format and password length",
+          "Call signUpWithEmail() service",
+          "Supabase creates auth.users record",
+          "Database trigger creates accounts record",
+          "AccountProvider updates auth state",
+          "Navigate to home screen"
+        ],
+        "validation": {
+          "email": "Valid email format required",
+          "password": "Minimum 6 characters",
+          "confirmPassword": "Must match password"
+        }
+      },
+      "sign_in": {
+        "id": "action_sign_in",
+        "name": "Sign In",
+        "type": "user_action",
+        "screen": "auth",
+        "flow": [
+          "User enters email and password",
+          "Client validates email format",
+          "Call signInWithEmail() service",
+          "Supabase validates credentials",
+          "AccountProvider updates auth state",
+          "Navigate to home screen"
+        ],
+        "validation": {
+          "email": "Valid email format required",
+          "password": "Required"
+        }
+      },
+      "google_oauth": {
+        "id": "action_google_oauth",
+        "name": "Google OAuth",
+        "type": "user_action",
+        "screen": "auth",
+        "flow": [
+          "User clicks 'Sign in with Google'",
+          "Call signInWithGoogle() service",
+          "Redirect to Google OAuth consent",
+          "User authorizes app",
+          "Redirect back to app with token",
+          "Supabase creates/updates auth.users",
+          "Database trigger creates accounts (if new user)",
+          "AccountProvider updates auth state",
+          "Navigate to home screen"
+        ],
+        "requirements": ["Google OAuth configured in Supabase dashboard"]
+      }
+    }
+  },
+  "edges": {
+    "screen_to_service": [
+      {
+        "from": "screen_auth",
+        "to": "service_auth",
+        "relationship": "uses",
+        "methods": ["signUpWithEmail", "signInWithEmail", "signInWithGoogle"]
+      },
+      {
+        "from": "screen_index",
+        "to": "provider_account",
+        "relationship": "uses",
+        "properties": ["isAuthenticated", "themeLoading"]
+      }
+    ],
+    "service_to_database": [
+      {
+        "from": "service_auth",
+        "to": "table_auth_users",
+        "relationship": "creates/reads",
+        "operations": ["signUp", "signIn", "OAuth"]
+      },
+      {
+        "from": "service_auth",
+        "to": "table_accounts",
+        "relationship": "creates/reads",
+        "operations": ["createUserAccount"]
+      }
+    ],
+    "database_relationships": [
+      {
+        "from": "table_accounts",
+        "to": "table_auth_users",
+        "relationship": "foreign_key",
+        "key": "user_id -> id",
+        "cardinality": "one_to_one"
+      }
+    ],
+    "provider_to_service": [
+      {
+        "from": "provider_account",
+        "to": "service_auth",
+        "relationship": "uses",
+        "methods": ["createUserAccount"]
+      },
+      {
+        "from": "provider_account",
+        "to": "service_supabase",
+        "relationship": "uses",
+        "purpose": "Auth state monitoring"
+      }
+    ],
+    "action_flows": [
+      {
+        "from": "action_sign_up",
+        "to": "service_auth",
+        "relationship": "triggers",
+        "method": "signUpWithEmail"
+      },
+      {
+        "from": "action_sign_in",
+        "to": "service_auth",
+        "relationship": "triggers",
+        "method": "signInWithEmail"
+      },
+      {
+        "from": "action_google_oauth",
+        "to": "service_auth",
+        "relationship": "triggers",
+        "method": "signInWithGoogle"
+      }
+    ]
+  },
+  "properties": {
+    "security": {
+      "password_hashing": "bcrypt",
+      "password_min_length": 6,
+      "session_storage": "AsyncStorage",
+      "session_auto_refresh": true,
+      "oauth_flow": "PKCE",
+      "rls_enabled": true
+    },
+    "validation": {
+      "email_regex": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+      "password_requirements": {
+        "min_length": 6,
+        "client_side": true,
+        "server_side": true
+      }
+    },
+    "ui_patterns": {
+      "theme_support": true,
+      "responsive_design": true,
+      "loading_states": true,
+      "error_handling": "inline_messages",
+      "form_validation": "real_time"
+    }
+  }
+}
