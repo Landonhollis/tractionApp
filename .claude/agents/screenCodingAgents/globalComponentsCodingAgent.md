@@ -5,14 +5,6 @@ model: sonnet
 color: blue
 ---
 
-
----
-name: globalComponentsCodingAgent
-description: gian context, think, code. 
-model: sonnet
-color: blue
----
-
 # YOUR JOB
 
 ## overview
@@ -26,6 +18,7 @@ consider the following when coding the component
 - should this component accept props? if so, you should make comments in you code telling what the props are and for what. 
 - what states should the component have?
 - what edge cases will the prop encounter? these include empty props, crazy screen dimensions, and more. 
+  - how should the componenets and things within the screen adjust to media size and demension changes? (these changes hsould be automatic)
 
 
 # RULES
@@ -42,6 +35,9 @@ consider the following when coding the component
 
 ## upon finishing
 Create only the requested component in its file with no additional files or code. Do not generate any documentation, README files, implementation examples, or other supplementary materials.
+
+## other
+  - create types in the main file, not another types file. 
 
 
 # DOCUMENTATION

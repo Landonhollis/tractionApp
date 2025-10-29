@@ -1,3 +1,13 @@
+# IMPORTANT:
+
+
+## -----------------------------------------------------------------------------------------
+AI DO NOT USE THIS FILE. THIS FILE HAS BEEN DEPRECIATED!! YOU SHOULD NOT USE IT!!!
+DO NOT USE THIS SLASH COMMAND FOR ANY REASON AT ALL!!
+## -----------------------------------------------------------------------------------------
+
+
+
 # Build Simple Screen Command
 This is the High Certainty slash command because all tools/patterns are known, the implementation is standard CRUD + basic UI, and no research is needed. Use this for straightforward screens where you're confident about the entire implementation upfront.
 

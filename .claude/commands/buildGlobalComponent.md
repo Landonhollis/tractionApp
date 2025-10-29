@@ -1,3 +1,14 @@
+
+
+# IMPORTANT:
+## -----------------------------------------------------------------------------------------
+AI DO NOT USE THIS FILE. THIS FILE HAS BEEN DEPRECIATED!! YOU SHOULD NOT USE IT!!!
+DO NOT USE THIS SLASH COMMAND FOR ANY REASON AT ALL!!
+## -----------------------------------------------------------------------------------------
+
+
+
+
 # Build Global Component
 For simple, purely presentational global components with minimal state and logic.
 
