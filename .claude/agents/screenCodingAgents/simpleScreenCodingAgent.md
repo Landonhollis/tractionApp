@@ -23,6 +23,7 @@ The following are things you should consider while coding:
   - where should the global layout components go if there are any in order to keep them consistent across multiple screens? 
   - how is navigation handles, where do users come in and go out?
   - how should the componenets and things within the screen adjust to media size and demension changes? (these changes hsould be automatic)
+  - if there is a menu global component, you should look at it to know the routing for the app, and how this page fits into the routing. 
 
 
 

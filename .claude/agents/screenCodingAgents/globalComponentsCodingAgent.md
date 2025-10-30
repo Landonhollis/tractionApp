@@ -18,7 +18,7 @@ consider the following when coding the component
 - should this component accept props? if so, you should make comments in you code telling what the props are and for what. 
 - what states should the component have?
 - what edge cases will the prop encounter? these include empty props, crazy screen dimensions, and more. 
-  - how should the componenets and things within the screen adjust to media size and demension changes? (these changes hsould be automatic)
+- how should the componenets and things within the screen adjust to media size and demension changes? (these changes hsould be automatic)
 
 
 # RULES

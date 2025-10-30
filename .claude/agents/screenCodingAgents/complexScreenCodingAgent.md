@@ -24,6 +24,7 @@ The following are things you should consider while coding:
   - how is navigation handles, where do users come in and go out?
   - what backend functions, webhooks, and services need to exist for this screen (you should make them)
   - how should the componenets and things within the screen adjust to media size and demension changes? (these changes hsould be automatic)
+  - if there is a menu global component, you should look at it to know the routing for the app, and how this page fits into the routing. 
 
 
 
