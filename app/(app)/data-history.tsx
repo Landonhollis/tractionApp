@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, ActivityIndicator, Dimensions } from 'react-native';
-import { Text } from '~/components/ui/text';
-import { Button } from '~/components/ui/button';
-import { useAuth } from '~/contexts/AccountProvider';
-import { dataHistoryService, MetricWithHistory, DataHistoryRecord } from '~/services/dataHistoryService';
+import { View, Text, ScrollView, ActivityIndicator, Dimensions, TouchableOpacity } from 'react-native';
+import { useAccount } from '../../providers/AccountProvider';
+import { dataHistoryService, MetricWithHistory, DataHistoryRecord } from '../../services/dataHistoryService';
 import { CartesianChart, Line } from 'victory-native';
-import { useFont } from '@shopify/react-native-skia';
 import { Circle } from '@shopify/react-native-skia';
 
 type TimeframeFilter = 'all' | '6mo' | '1mo';
@@ -24,13 +21,11 @@ type ChartDataPoint = {
 };
 
 export default function DataHistoryScreen() {
-  const { user } = useAuth();
+  const { user } = useAccount();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [metricsWithHistory, setMetricsWithHistory] = useState<MetricWithHistory[]>([]);
   const [graphStates, setGraphStates] = useState<{ [metricId: string]: TimeframeFilter }>({});
-
-  const font = useFont(require('../assets/fonts/Inter-Regular.ttf'), 12);
 
   useEffect(() => {
     loadData();
@@ -88,9 +83,9 @@ export default function DataHistoryScreen() {
     return (
       <View className="flex-1 items-center justify-center bg-white p-4">
         <Text className="text-red-600 text-center">{error}</Text>
-        <Button onPress={loadData} className="mt-4">
+        <TouchableOpacity onPress={loadData} className="mt-4">
           <Text>Retry</Text>
-        </Button>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -120,27 +115,21 @@ export default function DataHistoryScreen() {
               <View key={metricData.metric_id} className="mb-8">
                 <Text className="text-lg font-semibold mb-2">{metricData.metric_description}</Text>
                 <View className="flex-row gap-2 mb-4">
-                  <Button
-                    variant={timeframe === 'all' ? 'default' : 'outline'}
-                    size="sm"
+                  <TouchableOpacity
                     onPress={() => handleTimeframeChange(metricData.metric_id, 'all')}
                   >
                     <Text>All Time</Text>
-                  </Button>
-                  <Button
-                    variant={timeframe === '6mo' ? 'default' : 'outline'}
-                    size="sm"
+                  </TouchableOpacity>
+                  <TouchableOpacity
                     onPress={() => handleTimeframeChange(metricData.metric_id, '6mo')}
                   >
                     <Text>6-mo</Text>
-                  </Button>
-                  <Button
-                    variant={timeframe === '1mo' ? 'default' : 'outline'}
-                    size="sm"
+                  </TouchableOpacity>
+                  <TouchableOpacity
                     onPress={() => handleTimeframeChange(metricData.metric_id, '1mo')}
                   >
                     <Text>1-mo</Text>
-                  </Button>
+                  </TouchableOpacity>
                 </View>
                 <Text className="text-gray-500 text-center py-8">
                   No data available for this timeframe
@@ -161,7 +150,6 @@ export default function DataHistoryScreen() {
               onTimeframeChange={(newTimeframe) =>
                 handleTimeframeChange(metricData.metric_id, newTimeframe)
               }
-              font={font}
             />
           );
         })}
@@ -175,7 +163,6 @@ type MetricGraphProps = {
   chartData: ChartDataPoint[];
   timeframe: TimeframeFilter;
   onTimeframeChange: (timeframe: TimeframeFilter) => void;
-  font: any;
 };
 
 function MetricGraph({
@@ -183,7 +170,6 @@ function MetricGraph({
   chartData,
   timeframe,
   onTimeframeChange,
-  font,
 }: MetricGraphProps) {
   const screenWidth = Dimensions.get('window').width;
   const chartWidth = screenWidth - 32;
@@ -206,40 +192,32 @@ function MetricGraph({
       <Text className="text-lg font-semibold mb-2">{metricDescription}</Text>
 
       <View className="flex-row gap-2 mb-4">
-        <Button
-          variant={timeframe === 'all' ? 'default' : 'outline'}
-          size="sm"
+        <TouchableOpacity
           onPress={() => onTimeframeChange('all')}
         >
           <Text>All Time</Text>
-        </Button>
-        <Button
-          variant={timeframe === '6mo' ? 'default' : 'outline'}
-          size="sm"
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => onTimeframeChange('6mo')}
         >
           <Text>6-mo</Text>
-        </Button>
-        <Button
-          variant={timeframe === '1mo' ? 'default' : 'outline'}
-          size="sm"
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => onTimeframeChange('1mo')}
         >
           <Text>1-mo</Text>
-        </Button>
+        </TouchableOpacity>
       </View>
 
       <View style={{ height: 300, width: chartWidth }}>
-        {font && (
-          <CartesianChart
-            data={formattedData}
-            xKey="x"
-            yKeys={['current_status', 'min', 'max']}
-            axisOptions={{
-              font,
-              formatXLabel: formatXLabel,
-            }}
-          >
+        <CartesianChart
+          data={formattedData}
+          xKey="x"
+          yKeys={['current_status', 'min', 'max']}
+          axisOptions={{
+            formatXLabel: formatXLabel,
+          }}
+        >
             {({ points, chartBounds }) => (
               <>
                 <Line
@@ -277,8 +255,7 @@ function MetricGraph({
                 })}
               </>
             )}
-          </CartesianChart>
-        )}
+        </CartesianChart>
       </View>
 
       <View className="h-px bg-gray-300 mt-4" />

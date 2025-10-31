@@ -7,9 +7,8 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native'
-import { Menu } from '../components/layoutComponents/Menu'
-import { useAccount } from '../providers/AccountProvider'
-import { getUserName, updateUserName } from '../services/settingsService'
+import { useAccount } from '../../providers/AccountProvider'
+import { getUserName, updateUserName } from '../../services/settingsService'
 
 // Types
 type SaveState = 'idle' | 'saving' | 'success' | 'error'
@@ -79,7 +78,6 @@ export default function SettingsScreen() {
   if (loading) {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <Menu />
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size="large" color="#000" />
           <Text style={{ marginTop: 16, fontSize: 16 }}>Loading settings...</Text>
@@ -90,7 +88,6 @@ export default function SettingsScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
-      <Menu />
 
       <ScrollView
         style={{ flex: 1 }}

@@ -11,7 +11,6 @@ import {
   ActivityIndicator,
   useWindowDimensions,
 } from 'react-native'
-import { Menu } from '@/components/layoutComponents/Menu'
 import {
   getCompanyMetrics,
   getDepartmentalMetrics,
@@ -25,8 +24,8 @@ import {
   MetricInsert,
   MetricLevel,
   UserName,
-} from '@/services/scorecardsService'
-import { useAccount } from '@/services/accountProviderServices'
+} from '../../services/scorecardsService'
+import { useAccount } from '../../providers/AccountProvider'
 
 // Types
 type EditingMetric = {
@@ -252,7 +251,6 @@ export default function ScoreCardsScreen() {
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f9fafb' }}>
-        <Menu />
         <ActivityIndicator size="large" color="#000" />
       </View>
     )
@@ -260,7 +258,6 @@ export default function ScoreCardsScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#f9fafb' }}>
-      <Menu />
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 20, paddingTop: 80 }}>
         {/* Company Metrics */}
         <CompanyMetricsComponent

@@ -10,8 +10,7 @@ import {
   ActivityIndicator,
   Alert,
 } from 'react-native'
-import { Menu } from '../components/layoutComponents/Menu'
-import { useAccount } from '../providers/AccountProvider'
+import { useAccount } from '../../providers/AccountProvider'
 import {
   getIssues,
   createIssue,
@@ -19,7 +18,7 @@ import {
   deleteIssue,
   Issue,
   IssueInput,
-} from '../services/issuesService'
+} from '../../services/issuesService'
 
 // Types
 type EditingIssue = {
@@ -200,7 +199,6 @@ export default function IssuesScreen() {
   if (loading) {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <Menu />
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size="large" color="#000" />
           <Text style={{ marginTop: 16, fontSize: 16 }}>Loading issues...</Text>
@@ -211,8 +209,6 @@ export default function IssuesScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
-      <Menu />
-
       <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={{ padding: 20, paddingTop: 80, paddingBottom: 100 }}

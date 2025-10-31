@@ -45,6 +45,8 @@ The following are things you should consider while coding:
   - spend lots of perfectly styling
   - useing the theme core system
   - spending much time thinking anbout color palate, corner radius, padding, and specific disign features like these.
+  - use a useFont hook
+  - use custom fonts that are not the default. custom fonts are only for future agents. 
 
 
 ## upon finishing
@@ -72,8 +74,8 @@ The only exeption to the no exploration you have is if there is something that y
 
 ## other
   - create types in the main file, not another types file. 
-  - when importing, use absolute paths. Not relative. 
-
+  - do not specify any font. you should leave all text as the default font. 
+  - SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout.
 
 
 # Documentation

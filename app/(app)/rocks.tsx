@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
   useWindowDimensions,
 } from 'react-native'
-import { useAuth } from '../contexts/AccountProvider'
+import { useAccount } from '../../providers/AccountProvider'
 import {
   Rock,
   RockLevel,
@@ -23,7 +23,7 @@ import {
   createRock,
   updateRock,
   deleteRock,
-} from '../services/rocksService'
+} from '../../services/rocksService'
 
 // Types for the component
 type EditingRock = {
@@ -48,7 +48,7 @@ type EditModalState = {
 
 export default function RocksScreen() {
   // Auth context
-  const { user } = useAuth()
+  const { user } = useAccount()
 
   // Data state
   const [companyRocks, setCompanyRocks] = useState<Rock[]>([])

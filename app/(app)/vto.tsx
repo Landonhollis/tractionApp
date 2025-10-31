@@ -9,8 +9,7 @@ import {
   Pressable,
   ActivityIndicator,
 } from 'react-native'
-import { Menu } from '../components/layoutComponents/Menu'
-import { useAccount } from '../providers/AccountProvider'
+import { useAccount } from '../../providers/AccountProvider'
 import {
   getVto,
   createVto,
@@ -18,7 +17,7 @@ import {
   formatSectionTitle,
   getVtoSectionColumns,
   VtoRecord,
-} from '../services/vtoService'
+} from '../../services/vtoService'
 
 // Types
 type EditingSection = {
@@ -100,7 +99,6 @@ export default function VtoScreen() {
   if (loading) {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <Menu />
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size="large" color="#000" />
           <Text style={{ marginTop: 16, fontSize: 16 }}>Loading VTO...</Text>
@@ -113,7 +111,6 @@ export default function VtoScreen() {
   if (!vtoData) {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <Menu />
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
           <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 16 }}>
             Unable to load VTO
@@ -138,7 +135,6 @@ export default function VtoScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
-      <Menu />
 
       <ScrollView
         style={{ flex: 1 }}

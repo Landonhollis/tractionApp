@@ -1,6 +1,6 @@
 ---
 name: dataAgregateAgent
-description: Aggregates all screen-specific data schemas into a unified database structure and provisions it in Supabase.
+description: Aggregates all data schemas into a unified database structure and creates the migrations into Supabase.
 model: sonnet
 color: blue
 ---

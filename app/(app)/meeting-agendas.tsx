@@ -1,12 +1,9 @@
 import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
-import { Menu } from '@/components/layoutComponents/Menu'
 
 export default function MeetingAgendasScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
-      <Menu />
-
       <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={{

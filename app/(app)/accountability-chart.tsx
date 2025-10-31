@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, StyleSheet, Pressable, TextInput, Modal, Dimensions, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Pressable, TextInput, Modal, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { GestureDetector, Gesture, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, { useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import Svg, { Line, Rect } from 'react-native-svg';
-import { useAccount } from '../providers/AccountProvider';
-import { accountabilityChartService, AccountabilityNode, AccountabilityLine } from '../services/accountabilityChartService';
-import { Text } from '~/components/ui/text';
-import { Button } from '~/components/ui/button';
+import { useAccount } from '../../providers/AccountProvider';
+import { accountabilityChartService, AccountabilityNode, AccountabilityLine } from '../../services/accountabilityChartService';
 
 const CANVAS_WIDTH = 3000;
 const CANVAS_HEIGHT = 3000;
@@ -245,12 +243,12 @@ export default function AccountabilityChartScreen() {
               <View style={[styles.popup, { top: showDescriptionPopup.y, left: showDescriptionPopup.x }]}>
                 <Text style={styles.popupTitle}>{showDescriptionPopup.node.title || 'Untitled'}</Text>
                 <Text style={styles.popupDescription}>{showDescriptionPopup.node.description || 'No description'}</Text>
-                <Button onPress={() => {
+                <TouchableOpacity onPress={() => {
                   setEditingNode(showDescriptionPopup.node);
                   setShowDescriptionPopup(null);
                 }}>
                   <Text>Edit</Text>
-                </Button>
+                </TouchableOpacity>
               </View>
             </Pressable>
           </Modal>
@@ -289,15 +287,15 @@ export default function AccountabilityChartScreen() {
               />
 
               <View style={styles.modalButtons}>
-                <Button onPress={() => setEditingNode(null)}>
+                <TouchableOpacity onPress={() => setEditingNode(null)}>
                   <Text>Cancel</Text>
-                </Button>
-                <Button onPress={handleSaveNode}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleSaveNode}>
                   <Text>Done</Text>
-                </Button>
-                <Button onPress={handleDeleteNode}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleDeleteNode}>
                   <Text>Delete</Text>
-                </Button>
+                </TouchableOpacity>
               </View>
             </ScrollView>
           </Modal>

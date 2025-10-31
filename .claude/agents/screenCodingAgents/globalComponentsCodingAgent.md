@@ -28,6 +28,7 @@ consider the following when coding the component
 ## styling
 - the styling agent will do all the fine tuning on the ui and design later, so do not spend much time trying to make it look good. 
 - this app uses the theme core styling system, but you should NOT use it. this is only for the styling agent later. 
+- you should NOT use custom fonts, you should only use default fonts. custom fonts are only for future styling agents. 
 
 ## research and exploration
 - IMPORTANT: EXPLORATION AND FREE RESEARCH IS BANNED, YOU ARE NOT ALLOWED TO DO IT!!!
@@ -39,6 +40,8 @@ Create only the requested component in its file with no additional files or code
 
 ## other
   - create types in the main file, not another types file. 
+  - do not specify any font. you should leave all text as the default font. 
+  - SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout.
 
 
 # DOCUMENTATION

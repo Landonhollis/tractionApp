@@ -6,11 +6,14 @@ import { allThemes } from '../assets/themeObjects'
 import { setTheme as setThemeService } from '../services/setTheme'
 import { ps as psUtil } from '../utilities/ps'
 import { Ctn, Ct } from '../assets/themeTypes'
+import type { Session } from '@supabase/supabase-js'
 
 interface Account {
   // Variables from Supabase
   userId?: string | null
   email?: string | null
+  session?: Session | null
+  user?: { id: string; email?: string } | null
 
   // Variables from account provider
   isAuthenticated: boolean
@@ -31,6 +34,8 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
   const [userId, setUserId] = useState<string | null>(null)
   const [email, setEmail] = useState<string | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+  const [session, setSession] = useState<Session | null>(null)
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
 
   // Account data
   const [ctn, setCtn] = useState<Ctn>('theme1')
@@ -40,32 +45,40 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
   // Authentication functions
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
-      setIsAuthenticated(!!session?.user?.id)
+      const { data: { session: currentSession } } = await supabase.auth.getSession()
+      setSession(currentSession)
+      setIsAuthenticated(!!currentSession?.user?.id)
 
-      if (session?.user?.id) {
-        setUserId(session.user.id)
-        setEmail(session.user.email || null)
+      if (currentSession?.user?.id) {
+        setUserId(currentSession.user.id)
+        setEmail(currentSession.user.email || null)
+        setUser({ id: currentSession.user.id, email: currentSession.user.email })
         loadAccountData()
       } else {
         setUserId(null)
         setEmail(null)
+        setSession(null)
+        setUser(null)
         setIsAuthenticated(false)
         clearAccountData()
       }
     }
     checkAuth()
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAuthenticated(!!session?.user?.id)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
+      setSession(currentSession)
+      setIsAuthenticated(!!currentSession?.user?.id)
 
-      if (session?.user?.id) {
-        setUserId(session.user.id)
-        setEmail(session.user.email || null)
+      if (currentSession?.user?.id) {
+        setUserId(currentSession.user.id)
+        setEmail(currentSession.user.email || null)
+        setUser({ id: currentSession.user.id, email: currentSession.user.email })
         loadAccountData()
       } else {
         setUserId(null)
         setEmail(null)
+        setSession(null)
+        setUser(null)
         setIsAuthenticated(false)
         clearAccountData()
       }
@@ -113,6 +126,8 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
     <Account.Provider value={{
       userId,
       email,
+      session,
+      user,
       isAuthenticated,
       ctn,
       setTheme: handleSetTheme,

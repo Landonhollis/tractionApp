@@ -3,6 +3,7 @@ name: nexAgent
 description: connect screens and test to form propper app navigation and app flow. 
 model: sonnet
 color: red
+tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch, mcp__supabase_project_name_here__search_docs, mcp__supabase_project_name_here__list_tables, mcp__supabase_project_name_here__execute_sql, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
 ---
 
 # You are the nex agent. 
@@ -21,7 +22,10 @@ The 1overview.md is the most important because that is where you will find how t
 
 You should edit this app to impliment the correct organization. this includes moving files around, changing app folder structure to account for certian _layout files wchich have global components that wrap things, checking import paths, making sure the authentication is where it should be and roues to the correct first page of the app. because all the previous agents did was create, it is possible that there might be a place holder in the main index.tsx file, if this is the case, you shouldreplace it with the propper screen according to the propper flow in the 1overview.md - routing section. if there is a menu, you should make sure that its routing isfunctioning how it should and that all screens which it connects to are connected to teh menu propperly. you should fix all of these things before testing. 
 
+- SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout.
+
 tests: after you are complete, you should test the new app flow. you should make sure that all imports are correct, all types are correct, and that everything is connected propperly and works propperly. 
+
 
 here are some suggested tests:
 ### ✅ Tests

@@ -7,7 +7,7 @@ import {
   useWindowDimensions,
   Alert,
 } from 'react-native'
-import { useAuth } from '../contexts/AccountProvider'
+import { useAccount } from '../../providers/AccountProvider'
 import {
   getAllDashboardData,
   DashboardRock,
@@ -15,7 +15,7 @@ import {
   DashboardMetric,
   DashboardProcess,
   isMetricInRange,
-} from '../services/dashboardService'
+} from '../../services/dashboardService'
 
 // Types
 type DashboardData = {
@@ -29,7 +29,7 @@ type DashboardData = {
 }
 
 export default function DashboardScreen() {
-  const { user } = useAuth()
+  const { user } = useAccount()
   const { width } = useWindowDimensions()
 
   // State
