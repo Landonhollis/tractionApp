@@ -1,4 +1,6 @@
 # Header Global Component
+[complete]
+
 
 ## Purpose (Context)
 Displays the current screen title to orient the user. Appears at the top of every authenticated screen across the app.

@@ -1,4 +1,6 @@
 # VTO Screen
+[complete]
+
 
 ## Purpose (Context)
 Display and edit the company's Vision/Traction Organizer (VTO) - a single-page strategic plan. The VTO contains multiple sections (core values, core focus, 10-year target, etc.) that define the company's vision and direction. This is a high-visibility, presentation-focused document that leadership references frequently.

@@ -1,4 +1,5 @@
 # Rocks Screen
+[complete]
 
 ## Purpose (Context)
 Central hub for managing all company rocks (quarterly goals/priorities) across three organizational levels: company-wide, departmental, and individual. Users can view, add, edit, and delete rocks at each level. This supports the Traction methodology's focus on setting and tracking quarterly priorities.

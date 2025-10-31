@@ -1,4 +1,5 @@
 # Scorecards Screen
+[complete]
 
 ## Purpose (Context)
 Central hub for managing all company metrics (measurables/scorecards) across three organizational levels: company-wide, departmental, and individual. Users can view, add, edit, and delete metrics at each level. Metrics are updated daily, so editing must be quick and easy. This supports the Traction methodology's focus on tracking key performance indicators.

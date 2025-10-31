@@ -1,8 +1,8 @@
 # Meeting Agendas Screen
+[complete]
 
 ## Purpose (Context)
 Display educational content about various meeting agendas from the Traction methodology. This is a reference/learning screen showing multiple meeting types and their structures with no interaction beyond reading.
-
 ---
 
 ## Routing (INVARIANT)

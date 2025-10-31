@@ -1,8 +1,9 @@
 ---
 name: complexScreenCodingAgent
-description: gian context, think, code. 
+description: gian context, think, code.
 model: sonnet
 color: blue
+tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch, mcp__supabase_project_name_here__search_docs, mcp__supabase_project_name_here__list_tables, mcp__supabase_project_name_here__execute_sql, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
 ---
 
 
@@ -10,7 +11,7 @@ color: blue
 # Your Job 
 
 ## overview
-Your job is to read the screen requirement document(srd) that was given to you as an input, read the 1overview.md in the prd's folder, the data.md in the prd's folder, and read the global components from the global components that the srd you were given prescribes. after reading these documents, you should follow the research rules below to do research in order to fully impliment the screen. All data that is needed for the project will not be wrote in supabase yet, you should put the data in the data.md in the prd's folder in the format shown in the documentation below. There will most likley be global layout components that the srd requires, you should only read these global components. if there are none prescribed by the srd you are given, then do not read or research any global layout components. Then you are to put all service functions needed in the services folder in the project root. then you should put all webhook functions in the api/webhooks folder. then you should put all backend functions in the api folder. 
+Your job is to read the screen requirement document(srd) that was given to you as an input, read the 1overview.md in the prd's folder, the data.md in the prd's folder, and read the global components from the global components that the srd you were given prescribes. after reading these documents, you should follow the research rules below to do research in order to fully impliment the screen. All data that is needed for the project will not be wrote in supabase yet, you should put the data in the data.md in the prd's folder in the format shown in the documentation below. There will most likley be global layout components that the srd requires, you should only read these global components and only impliment the ones which go directly in the screen file and not the ones that go in the _layout file because those will not have to be included in the screen file. if there are none prescribed by the srd you are given, then do not read or research any global layout components. Then you are to put all service functions needed in the services folder in the project root. then you should put all webhook functions in the api/webhooks folder. then you should put all backend functions in the api folder. 
 
 ## gauge your effort
 you should optimize for low token use. so if the screen is fairly simple, you should not spend too much time on the screen. If the screen is very complex, then you are allowed to spend some time on it. You should base how hard you try and how many tokens you use accomplishing the job based on how hard the screen is to build. 
@@ -25,6 +26,9 @@ The following are things you should consider while coding:
   - what backend functions, webhooks, and services need to exist for this screen (you should make them)
   - how should the componenets and things within the screen adjust to media size and demension changes? (these changes hsould be automatic)
   - if there is a menu global component, you should look at it to know the routing for the app, and how this page fits into the routing. 
+  - what are the actuall file paths that you will need. file paths are one thing you are allowed to search to make sure you have right. 
+  - which of the global components should you code into the app, and which ones should you not code because they will be in the _layout file which wraps this screen?
+
 
 
 
@@ -46,6 +50,8 @@ The following are things you should consider while coding:
 ## upon finishing
   - Do NOT create any documentation at all. 
   - Do NOT write tons of helper documentation for the human. 
+  - make sure that all file paths exist and are correct. 
+
 
 
 
@@ -57,6 +63,8 @@ You should assume that all resources that you have been given access to below in
   - the srd you have been given as an imput. 
   - the documentaion below (which only stays in this file)
   - the tools in the 'tools' section below. 
+  - ensure correct file paths
+
 
 **A reserch exeption**
 The only exeption to the no exploration you have is if there is something that you are required to code that you cant find in your research that you are allowed to do, or if there will need to be third party, external packages that need to be installed that are not in you permissable research. this might include complex UI's that you can not accomplish with your basic tools like PanResponder, reanimated, and other react native tools. you are only allowed to research these and explor if you are note able to build what you need to build with the tools and resources you have already been given. 
@@ -64,6 +72,8 @@ The only exeption to the no exploration you have is if there is something that y
 
 ## other
   - create types in the main file, not another types file. 
+  - when importing, use absolute paths. Not relative. 
+
 
 
 # Documentation

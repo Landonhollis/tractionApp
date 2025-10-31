@@ -1,4 +1,5 @@
 # Processes Screen
+[complete]
 
 ## Purpose (Context)
 Central hub for managing company processes. Users can view all documented processes in a presentational format, and add, edit, or delete processes as needed. This supports the Traction methodology's emphasis on documenting core processes.

@@ -1,4 +1,5 @@
 # Leading Over Lagging Screen
+[complete]
 
 ## Purpose (Context)
 Display educational content about the Leading Over Lagging Indicators protocol from the Traction methodology. This is a reference/learning screen with no interaction beyond reading.

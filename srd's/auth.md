@@ -1,4 +1,5 @@
 # Auth  Screen
+[complete]
 
 ## Purpose (Context)
 This is the authentication entry point where users can sign in with email/password, create a new account with email/password, or sign in with Google. It serves as the gateway to the app for both new and returning users.

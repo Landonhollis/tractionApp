@@ -1,4 +1,5 @@
 # Settings Screen
+[complete]
 
 ## Purpose (Context)
 Simple settings screen where users can update their display name. This is a minimal configuration screen focused on user profile management.

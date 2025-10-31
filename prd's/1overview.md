@@ -15,7 +15,8 @@
 ## API versions
 n/a
 
+## routing
 
 ## TOOLS
-you have access to the supabase mcp server that conects to this project. 
+you have access to the supabase mcp server that conects to this project, as well as context7 mcp for documentaion. 
 

@@ -1,5 +1,5 @@
 # Dashboard Screen
-
+[complete]
 ## Complexity Level
 **[X] Simple** - Standard CRUD, basic UI, Supabase + RN Reusables only
 **[ ] Complex** - Check this if: external APIs, payments, real-time features, custom packages likely needed, or non-trivial business logic

@@ -1,4 +1,5 @@
 # Right People Right Seats Screen
+[complete]
 
 ## Purpose (Context)
 Display educational content about the Right People Right Seats protocol from the Traction methodology. This is a reference/learning screen with no interaction beyond reading.

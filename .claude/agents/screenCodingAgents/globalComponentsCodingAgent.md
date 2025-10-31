@@ -19,6 +19,7 @@ consider the following when coding the component
 - what states should the component have?
 - what edge cases will the prop encounter? these include empty props, crazy screen dimensions, and more. 
 - how should the componenets and things within the screen adjust to media size and demension changes? (these changes hsould be automatic)
+- should this component go in a _layout file and wrap the screens it applies to? or should this component be placed in each screen individually? you should write this in the comments in the bottom of this app and be clear about where it should go. 
 
 
 # RULES

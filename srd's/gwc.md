@@ -1,5 +1,5 @@
 # GWC Screen
-
+[complete]
 ## Purpose (Context)
 Display educational content about the GWC protocol (Get it, Want it, Capacity to do it) from the Traction methodology. This is a reference/learning screen with no interaction beyond reading.
 

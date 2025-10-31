@@ -1,5 +1,5 @@
 # IDS Screen
-
+[complete]
 ## Purpose (Context)
 Display educational content about the IDS protocol (Identify, Discuss, Solve) from the Traction methodology. This is a reference/learning screen with no interaction beyond reading.
 
