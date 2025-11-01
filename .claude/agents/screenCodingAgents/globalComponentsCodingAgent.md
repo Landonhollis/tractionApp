@@ -42,6 +42,8 @@ Create only the requested component in its file with no additional files or code
   - create types in the main file, not another types file. 
   - do not specify any font. you should leave all text as the default font. 
   - SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout.
+  - you should create enums in this front end code, they are not to be left for the database. 
+
 
 
 # DOCUMENTATION
