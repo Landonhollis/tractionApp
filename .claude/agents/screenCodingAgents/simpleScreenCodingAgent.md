@@ -1,6 +1,6 @@
 ---
 name: simpleScreenCodingAgent
-description: gian context, think, code.
+description: gian context, think, code. 
 model: sonnet
 color: blue
 tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch, mcp__supabase_project_name_here__search_docs, mcp__supabase_project_name_here__list_tables, mcp__supabase_project_name_here__execute_sql, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
@@ -24,7 +24,7 @@ The following are things you should consider while coding:
   - where should the global layout components go if there are any in order to keep them consistent across multiple screens? 
   - how is navigation handles, where do users come in and go out?
   - how should the componenets and things within the screen adjust to media size and demension changes? (these changes hsould be automatic)
-  - if there is a menu global component, you should look at it to know the routing for the app, and how this page fits into the routing.  
+  - if there is a menu global component, you should look at it to know the routing for the app, and how this page fits into the routing. 
   - what are the actuall file paths that you will need. file paths are one thing you are allowed to search to make sure you have right. 
   - which of the global components should you code into the app, and which ones should you not code because they will be in the _layout file which wraps this screen?
 
@@ -46,12 +46,10 @@ The following are things you should consider while coding:
   - use custom fonts that are not the default. custom fonts are only for future agents. 
 
 
-
 ## upon finishing
   - Do NOT create any documentation at all. 
   - Do NOT write tons of helper documentation for the human. 
   - make sure that all file paths exist and are correct. 
-
 
 
 
@@ -77,8 +75,11 @@ You should assume that all resources that you have been given access to below in
 # Documentation
 
 
+## "../../../docs/codingDocs"
+Within the relitive path "../../../docs/codingDocs", there are coding docs. YOU SHOULD NOT LOOK AT THE OTHER DOCS!! ONLY THE codingDocs/ FOLDER!!! this folder might be empty right now but later they will include directions of coding graphs, tables, whiteboards, and more. 
+
 ## React native reusables
-React native reusables has many reusable components that can be easily insalled and used. Here is a list of the avalible components they have. if you need any of these things yoyu should use RN reusables. 
+React native reusables has many reusable components that can be easily insalled and used. Here is a list of the avalible components they have. if you need any of these things yoyu should use RN reusables.
   - **Accordion** - Expandable sections with collapsible content panels
   - **Alert / Alert Dialog** - Display important messages or confirmation prompts
   - **Aspect Ratio** - Maintain consistent width-to-height image ratios
@@ -108,6 +109,9 @@ React native reusables has many reusable components that can be easily insalled 
   - **Toggle / Toggle Group** - Pressable on/off button states
   - **Tooltip** - Helpful hint on hover or focus
 here is the link to their documentation page. BUT IF YOU DONT NEED ONE OF THESE, DO NOT VISIT THIS DOCUMENTATION! here is the link to the documentation for RN reusables: https://reactnativereusables.com/docs
+
+## Icons
+Heroicons are available in `icons/outline/` (unfilled) and `icons/solid/` (filled) as SVG files. To use in React Native, you'll need `react-native-svg` or convert them to inline SVG components.
 
 
 ## Data entry

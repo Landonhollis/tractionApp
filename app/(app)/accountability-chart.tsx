@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, Pressable, TextInput, Modal, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { GestureDetector, Gesture, GestureHandlerRootView } from 'react-native-gesture-handler';
-import Animated, { useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { useSharedValue, useAnimatedStyle, runOnJS } from 'react-native-reanimated';
 import Svg, { Line, Rect } from 'react-native-svg';
 import { useAccount } from '../../providers/AccountProvider';
 import { accountabilityChartService, AccountabilityNode, AccountabilityLine } from '../../services/accountabilityChartService';
@@ -13,11 +13,20 @@ const NODE_HEIGHT = 90;
 
 type EditingNode = AccountabilityNode & { isNew?: boolean };
 
+type EditingLine = {
+  line: AccountabilityLine;
+  centerX: number;
+  centerY: number;
+  length: number;
+  angle: number;
+};
+
 export default function AccountabilityChartScreen() {
   const { user } = useAccount();
   const [nodes, setNodes] = useState<AccountabilityNode[]>([]);
   const [lines, setLines] = useState<AccountabilityLine[]>([]);
   const [editingNode, setEditingNode] = useState<EditingNode | null>(null);
+  const [editingLine, setEditingLine] = useState<EditingLine | null>(null);
   const [showDescriptionPopup, setShowDescriptionPopup] = useState<{ node: AccountabilityNode; x: number; y: number } | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -29,14 +38,17 @@ export default function AccountabilityChartScreen() {
   const savedTranslateX = useSharedValue(0);
   const savedTranslateY = useSharedValue(0);
 
+  // Get screen dimensions for boundary calculations
+  const screenWidth = Dimensions.get('window').width;
+  const screenHeight = Dimensions.get('window').height;
+
   // Load data
   const loadData = useCallback(async () => {
-    if (!user) return;
     try {
       setLoading(true);
       const [nodesData, linesData] = await Promise.all([
-        accountabilityChartService.getNodes(user.id),
-        accountabilityChartService.getLines(user.id),
+        accountabilityChartService.getNodes(),
+        accountabilityChartService.getLines(),
       ]);
       setNodes(nodesData);
       setLines(linesData);
@@ -45,7 +57,7 @@ export default function AccountabilityChartScreen() {
     } finally {
       setLoading(false);
     }
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     loadData();
@@ -58,16 +70,61 @@ export default function AccountabilityChartScreen() {
       savedTranslateY.value = translateY.value;
     })
     .onUpdate((e) => {
-      translateX.value = savedTranslateX.value + e.translationX;
-      translateY.value = savedTranslateY.value + e.translationY;
+      const newTranslateX = savedTranslateX.value + e.translationX;
+      const newTranslateY = savedTranslateY.value + e.translationY;
+
+      // Calculate boundaries to keep canvas within view
+      const scaledWidth = CANVAS_WIDTH * scale.value;
+      const scaledHeight = CANVAS_HEIGHT * scale.value;
+
+      // Maximum translation is 0 (canvas at left/top edge of screen)
+      // Minimum translation ensures canvas stays within screen bounds
+      const maxTranslateX = 0;
+      const minTranslateX = screenWidth - scaledWidth;
+      const maxTranslateY = 0;
+      const minTranslateY = screenHeight - scaledHeight;
+
+      // Constrain translation within bounds
+      translateX.value = Math.max(minTranslateX, Math.min(maxTranslateX, newTranslateX));
+      translateY.value = Math.max(minTranslateY, Math.min(maxTranslateY, newTranslateY));
     });
 
   const pinchGesture = Gesture.Pinch()
+    .onBegin(() => {
+      savedScale.value = scale.value;
+      savedTranslateX.value = translateX.value;
+      savedTranslateY.value = translateY.value;
+    })
     .onUpdate((e) => {
-      scale.value = Math.max(0.5, Math.min(3, savedScale.value * e.scale));
+      const newScale = Math.max(0.5, Math.min(3, savedScale.value * e.scale));
+
+      // Calculate focal point adjustments to zoom from center of fingers
+      const focalX = e.focalX;
+      const focalY = e.focalY;
+
+      // Adjust translation to keep the focal point stationary
+      // Don't apply boundary constraints during zoom to allow smooth focal point behavior
+      translateX.value = focalX - (focalX - savedTranslateX.value) * (newScale / savedScale.value);
+      translateY.value = focalY - (focalY - savedTranslateY.value) * (newScale / savedScale.value);
+      scale.value = newScale;
     })
     .onEnd(() => {
+      // Apply boundary constraints after zoom completes to keep canvas in bounds
+      const scaledWidth = CANVAS_WIDTH * scale.value;
+      const scaledHeight = CANVAS_HEIGHT * scale.value;
+      const maxTranslateX = 0;
+      const minTranslateX = screenWidth - scaledWidth;
+      const maxTranslateY = 0;
+      const minTranslateY = screenHeight - scaledHeight;
+
+      // Clamp translation to boundaries
+      translateX.value = Math.max(minTranslateX, Math.min(maxTranslateX, translateX.value));
+      translateY.value = Math.max(minTranslateY, Math.min(maxTranslateY, translateY.value));
+
+      // Save final constrained values
       savedScale.value = scale.value;
+      savedTranslateX.value = translateX.value;
+      savedTranslateY.value = translateY.value;
     });
 
   const composedGesture = Gesture.Simultaneous(panGesture, pinchGesture);
@@ -124,6 +181,86 @@ export default function AccountabilityChartScreen() {
       setNodes(nodes.map(n => n.id === nodeId ? { ...n, x_position: x, y_position: y } : n));
     } catch (error) {
       console.error('Error updating node position:', error);
+    }
+  };
+
+  // Update line position
+  const updateLinePosition = async (
+    lineId: string,
+    startX: number,
+    startY: number,
+    endX: number,
+    endY: number
+  ) => {
+    try {
+      await accountabilityChartService.updateLine(lineId, {
+        start_x: startX,
+        start_y: startY,
+        end_x: endX,
+        end_y: endY,
+      });
+      setLines(
+        lines.map((l) =>
+          l.id === lineId
+            ? { ...l, start_x: startX, start_y: startY, end_x: endX, end_y: endY }
+            : l
+        )
+      );
+    } catch (error) {
+      console.error('Error updating line position:', error);
+    }
+  };
+
+  // Handle line long press (open edit modal)
+  const handleLineLongPress = (line: AccountabilityLine) => {
+    const centerX = (line.start_x + line.end_x) / 2;
+    const centerY = (line.start_y + line.end_y) / 2;
+    const length = Math.sqrt(
+      Math.pow(line.end_x - line.start_x, 2) + Math.pow(line.end_y - line.start_y, 2)
+    );
+    const angle = Math.atan2(line.end_y - line.start_y, line.end_x - line.start_x) * (180 / Math.PI);
+    setEditingLine({ line, centerX, centerY, length, angle });
+  };
+
+  // Save edited line
+  const handleSaveLine = async () => {
+    if (!editingLine) return;
+    try {
+      const angleRad = (editingLine.angle * Math.PI) / 180;
+      const halfLength = editingLine.length / 2;
+      const startX = editingLine.centerX - halfLength * Math.cos(angleRad);
+      const startY = editingLine.centerY - halfLength * Math.sin(angleRad);
+      const endX = editingLine.centerX + halfLength * Math.cos(angleRad);
+      const endY = editingLine.centerY + halfLength * Math.sin(angleRad);
+
+      await accountabilityChartService.updateLine(editingLine.line.id, {
+        start_x: startX,
+        start_y: startY,
+        end_x: endX,
+        end_y: endY,
+      });
+      setLines(
+        lines.map((l) =>
+          l.id === editingLine.line.id
+            ? { ...l, start_x: startX, start_y: startY, end_x: endX, end_y: endY }
+            : l
+        )
+      );
+      setEditingLine(null);
+    } catch (error) {
+      console.error('Error saving line:', error);
+    }
+  };
+
+  // Delete line
+  const handleDeleteLine = async () => {
+    if (!editingLine) return;
+    try {
+      await accountabilityChartService.deleteLine(editingLine.line.id);
+      setLines(lines.filter((l) => l.id !== editingLine.line.id));
+      setEditingLine(null);
+    } catch (error) {
+      console.error('Error deleting line:', error);
     }
   };
 
@@ -197,7 +334,7 @@ export default function AccountabilityChartScreen() {
                 />
               ))}
 
-              {/* Lines */}
+              {/* Lines - rendered in SVG for visual display */}
               {lines.map((line) => (
                 <Line
                   key={line.id}
@@ -210,6 +347,17 @@ export default function AccountabilityChartScreen() {
                 />
               ))}
             </Svg>
+
+            {/* Draggable Lines (invisible hit areas over SVG lines) */}
+            {lines.map((line) => (
+              <DraggableLine
+                key={line.id}
+                line={line}
+                onPositionChange={updateLinePosition}
+                onLongPress={handleLineLongPress}
+                canvasScale={scale}
+              />
+            ))}
 
             {/* Nodes as Views */}
             {nodes.map((node) => (
@@ -254,7 +402,7 @@ export default function AccountabilityChartScreen() {
           </Modal>
         )}
 
-        {/* Edit Modal */}
+        {/* Edit Node Modal */}
         {editingNode && (
           <Modal visible onRequestClose={() => setEditingNode(null)}>
             <ScrollView style={styles.editModal}>
@@ -300,8 +448,160 @@ export default function AccountabilityChartScreen() {
             </ScrollView>
           </Modal>
         )}
+
+        {/* Edit Line Modal */}
+        {editingLine && (
+          <Modal visible onRequestClose={() => setEditingLine(null)}>
+            <ScrollView style={styles.editModal}>
+              <Text style={styles.modalTitle}>Edit Line</Text>
+
+              <Text style={styles.label}>Length: {Math.round(editingLine.length)}</Text>
+              <View style={styles.sliderContainer}>
+                <TouchableOpacity
+                  onPress={() =>
+                    setEditingLine({ ...editingLine, length: Math.max(20, editingLine.length - 10) })
+                  }
+                  style={styles.adjustButton}>
+                  <Text style={styles.adjustButtonText}>-</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => setEditingLine({ ...editingLine, length: editingLine.length + 10 })}
+                  style={styles.adjustButton}>
+                  <Text style={styles.adjustButtonText}>+</Text>
+                </TouchableOpacity>
+              </View>
+
+              <Text style={styles.label}>Rotation: {Math.round(editingLine.angle)}°</Text>
+              <View style={styles.sliderContainer}>
+                <TouchableOpacity
+                  onPress={() =>
+                    setEditingLine({
+                      ...editingLine,
+                      angle: (editingLine.angle - 15 + 360) % 360,
+                    })
+                  }
+                  style={styles.adjustButton}>
+                  <Text style={styles.adjustButtonText}>↶</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    setEditingLine({
+                      ...editingLine,
+                      angle: (editingLine.angle + 15) % 360,
+                    })
+                  }
+                  style={styles.adjustButton}>
+                  <Text style={styles.adjustButtonText}>↷</Text>
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.modalButtons}>
+                <TouchableOpacity onPress={() => setEditingLine(null)}>
+                  <Text>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleSaveLine}>
+                  <Text>Done</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleDeleteLine}>
+                  <Text>Delete</Text>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
+          </Modal>
+        )}
       </View>
     </GestureHandlerRootView>
+  );
+}
+
+// Draggable Line Component
+type DraggableLineProps = {
+  line: AccountabilityLine;
+  onPositionChange: (
+    id: string,
+    startX: number,
+    startY: number,
+    endX: number,
+    endY: number
+  ) => void;
+  onLongPress: (line: AccountabilityLine) => void;
+  canvasScale: Animated.SharedValue<number>;
+};
+
+function DraggableLine({ line, onPositionChange, onLongPress, canvasScale }: DraggableLineProps) {
+  const startX = useSharedValue(line.start_x);
+  const startY = useSharedValue(line.start_y);
+  const endX = useSharedValue(line.end_x);
+  const endY = useSharedValue(line.end_y);
+  const savedStartX = useSharedValue(line.start_x);
+  const savedStartY = useSharedValue(line.start_y);
+  const savedEndX = useSharedValue(line.end_x);
+  const savedEndY = useSharedValue(line.end_y);
+
+  useEffect(() => {
+    startX.value = line.start_x;
+    startY.value = line.start_y;
+    endX.value = line.end_x;
+    endY.value = line.end_y;
+  }, [line.start_x, line.start_y, line.end_x, line.end_y]);
+
+  const dragGesture = Gesture.Pan()
+    .onBegin(() => {
+      savedStartX.value = startX.value;
+      savedStartY.value = startY.value;
+      savedEndX.value = endX.value;
+      savedEndY.value = endY.value;
+    })
+    .onUpdate((e) => {
+      const deltaX = e.translationX / canvasScale.value;
+      const deltaY = e.translationY / canvasScale.value;
+      startX.value = savedStartX.value + deltaX;
+      startY.value = savedStartY.value + deltaY;
+      endX.value = savedEndX.value + deltaX;
+      endY.value = savedEndY.value + deltaY;
+    })
+    .onEnd(() => {
+      runOnJS(onPositionChange)(line.id, startX.value, startY.value, endX.value, endY.value);
+    });
+
+  const longPressGesture = Gesture.LongPress()
+    .minDuration(500)
+    .onStart(() => {
+      runOnJS(onLongPress)(line);
+    });
+
+  const composedLineGesture = Gesture.Race(longPressGesture, dragGesture);
+
+  // Calculate line center and rotation for hit area
+  const centerX = (line.start_x + line.end_x) / 2;
+  const centerY = (line.start_y + line.end_y) / 2;
+  const length = Math.sqrt(
+    Math.pow(line.end_x - line.start_x, 2) + Math.pow(line.end_y - line.start_y, 2)
+  );
+  const angle = Math.atan2(line.end_y - line.start_y, line.end_x - line.start_x) * (180 / Math.PI);
+
+  const animatedLineStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: (startX.value + endX.value) / 2 },
+      { translateY: (startY.value + endY.value) / 2 },
+    ],
+  }));
+
+  return (
+    <GestureDetector gesture={composedLineGesture}>
+      <Animated.View
+        style={[
+          styles.lineHitArea,
+          {
+            width: length,
+            left: centerX - length / 2,
+            top: centerY - 10,
+            transform: [{ rotate: `${angle}deg` }],
+          },
+          animatedLineStyle,
+        ]}
+      />
+    </GestureDetector>
   );
 }
 
@@ -336,13 +636,15 @@ function DraggableNode({ node, onPositionChange, onLongPress, canvasScale, canva
       offsetY.value = startY.value + e.translationY / canvasScale.value;
     })
     .onEnd(() => {
-      onPositionChange(node.id, offsetX.value, offsetY.value);
+      // Use runOnJS to safely call the async function from worklet context
+      runOnJS(onPositionChange)(node.id, offsetX.value, offsetY.value);
     });
 
   const longPressGesture = Gesture.LongPress()
     .minDuration(500)
     .onStart((e) => {
-      onLongPress(e.absoluteX, e.absoluteY);
+      // Use runOnJS to safely call the callback from worklet context
+      runOnJS(onLongPress)(e.absoluteX, e.absoluteY);
     });
 
   const composedNodeGesture = Gesture.Race(longPressGesture, dragGesture);
@@ -474,6 +776,31 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 24,
     gap: 12,
+  },
+  lineHitArea: {
+    position: 'absolute',
+    height: 20,
+    backgroundColor: 'transparent',
+  },
+  sliderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 20,
+    marginTop: 8,
+    marginBottom: 16,
+  },
+  adjustButton: {
+    backgroundColor: '#2196F3',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    minWidth: 60,
+    alignItems: 'center',
+  },
+  adjustButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

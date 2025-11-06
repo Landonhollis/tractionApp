@@ -1,0 +1,3 @@
+# this is the forms/intake bias
+
+Forms and intake screens optimize for completion and accuracy. Fields are grouped logically; related inputs stay together. Progress indication shows how much remains—especially critical for multi-step forms. Validation is immediate but not aggressive; errors appear after the user finishes a field, not during typing. Required fields are marked clearly. Input types match the data (number pad for phone, email keyboard for email). Smart defaults reduce work. Labels are clear and concise. The submit action is always visible and enabled only when valid. Visual design is clean; distractions risk abandonment. Autofill is supported. Completion should feel achievable, never burdensome.

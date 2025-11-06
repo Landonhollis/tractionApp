@@ -1,0 +1,3 @@
+# this is the onboarding bias
+
+Onboarding screens optimize for momentum and minimal friction. Each step reveals only what is necessary—progressive disclosure prevents overwhelm. Progress indicators show how close users are to completion. Skippable steps respect user agency; forced tours breed resentment. Visual design is welcoming and encouraging, never patronizing. Primary actions are obvious; secondary options are subtle. Illustrations support understanding without adding clutter. Every screen should answer "why am I doing this?" and "what's next?". The goal is to reach core value as fast as possible. Perfection can wait; participation cannot.

@@ -1,0 +1,3 @@
+# this is the profile/settings bias
+
+Profile and settings screens optimize for discoverability and safe exploration. Organization into clear sections prevents endless scrolling. Search or categorization helps users find specific settings. Visual hierarchy distinguishes critical settings from minor preferences. Destructive actions (delete account, clear data) are separated and confirmed. Toggles and controls provide immediate feedback. Descriptions explain consequences of changes without being verbose. Users should feel in control, not overwhelmed by options. The visual design is utilitarian—function over flair. Defaults should work for most; customization rewards those who explore. Nothing should be buried beyond two taps.

@@ -35,6 +35,7 @@ For each checked option in the infrastructure prd, use the perscribed documentat
 - Perform setup in order: Supabase → Theme → Stripe
 - Do not create anything in supabase. put all needed data requirements in the data.md prd in the prd's folder. this data entry should be straight foreward. other agents will also submit so do not make anything final. 
 - when inputing data into data.md do not include any ckecklists or any long explination. 
+- if you create theme objects, just use empty values for another agent to come in later and fill. dont use real values, but do include the value type in the types. 
 
 ## example input data into data.md
 - The following is JUST AN EXAMPLE of how you should enter data into the data.md prd in the prd's folder. 

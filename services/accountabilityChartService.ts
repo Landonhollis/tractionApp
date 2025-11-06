@@ -27,11 +27,10 @@ export type AccountabilityLine = {
 
 export const accountabilityChartService = {
   // Node operations
-  async getNodes(userId: string): Promise<AccountabilityNode[]> {
+  async getNodes(): Promise<AccountabilityNode[]> {
     const { data, error } = await supabase
       .from('accountability_nodes')
       .select('*')
-      .eq('user_id', userId)
       .order('created_at', { ascending: true });
 
     if (error) throw error;
@@ -85,11 +84,10 @@ export const accountabilityChartService = {
   },
 
   // Line operations
-  async getLines(userId: string): Promise<AccountabilityLine[]> {
+  async getLines(): Promise<AccountabilityLine[]> {
     const { data, error } = await supabase
       .from('accountability_lines')
       .select('*')
-      .eq('user_id', userId)
       .order('created_at', { ascending: true });
 
     if (error) throw error;

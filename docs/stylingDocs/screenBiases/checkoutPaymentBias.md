@@ -1,0 +1,3 @@
+# this is the checkout/payment bias
+
+Checkout and payment screens optimize for trust and completion. Every step must be necessary; every field must justify its presence. Progress through checkout is linear and visible—no surprises. Trust signals (security badges, money-back guarantees, secure payment icons) are present but not alarming. Costs are transparent; surprise fees kill conversions. Errors are caught and communicated before submission. The primary action (place order, complete payment) is visually dominant and always accessible. Visual design is clean and distraction-free. Anxiety is the enemy; clarity and confidence are the goals. Nothing should make users second-guess their decision at this stage.

@@ -1,0 +1,3 @@
+# this is the social/community bias
+
+Social and community apps optimize for engagement and connection. User-generated content is the hero—chrome fades into the background. Discovery should feel effortless and endless. Interaction must be immediate and satisfying; every like, comment, and share should feel responsive. Visual hierarchy prioritizes fresh content over navigation. Avatars and identity are prominent—people connect with people. Empty states encourage creation, not passive consumption. The app should feel alive and dynamic. Personalization is expected. Notifications drive return visits but must not feel manipulative. The infinite scroll is a feature, not a bug. Visual design should not compete with the content itself.

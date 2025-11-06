@@ -1,0 +1,3 @@
+# this is the travel/booking bias
+
+Travel and booking apps optimize for inspiration and decision confidence. Imagery is rich and aspirational—users buy experiences, not products. Comparisons are central; side-by-side evaluation should be effortless. Key details (price, dates, location) are always visible. Reviews and ratings build confidence. A subtle sense of urgency (limited availability, price changes) encourages action without feeling manipulative. Visual design should evoke the destination's mood. Booking flows are linear and clear; users should never wonder what step comes next. Trust signals (secure payment, cancellation policies) are prominent. Empty states inspire planning rather than show emptiness. The app balances dreaming with doing.

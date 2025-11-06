@@ -20,11 +20,10 @@ export type MetricWithHistory = {
 type TimeframeFilter = 'all' | '6mo' | '1mo';
 
 export const dataHistoryService = {
-  async fetchAllHistoryGroupedByMetric(userId: string): Promise<MetricWithHistory[]> {
+  async fetchAllHistoryGroupedByMetric(): Promise<MetricWithHistory[]> {
     const { data: historyData, error: historyError } = await supabase
       .from('data_history')
       .select('*')
-      .eq('user_id', userId)
       .order('timestamp', { ascending: true });
 
     if (historyError) throw historyError;
@@ -35,7 +34,6 @@ export const dataHistoryService = {
     const { data: metricsData, error: metricsError } = await supabase
       .from('metrics')
       .select('id, description')
-      .eq('user_id', userId)
       .in('id', uniqueMetricIds);
 
     if (metricsError) throw metricsError;

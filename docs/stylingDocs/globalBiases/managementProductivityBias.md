@@ -1,0 +1,3 @@
+# this is the management/productivity bias
+
+Management and productivity apps optimize for efficiency and information density. Users scan rapidly, looking for status, priority, and next actions. Hierarchy is critical—what matters most must be immediately obvious. Information should be dense but never cluttered; every element earns its space. Visual weight indicates importance. Navigation is predictable and fast. The app should feel like an extension of the user's workflow, not an interruption. Colors are functional, not decorative. Tables, lists, and structured data are common. White space creates groupings, not beauty. Speed and clarity trump delight.

@@ -1,0 +1,3 @@
+# this is the gallery/media grid bias
+
+Gallery and media grid screens optimize for visual browsing and immersion. Media fills the screen; chrome is minimal. Grids are tight but not cramped; each item is clearly tappable. Consistent aspect ratios create visual rhythm; mixed sizes can feel chaotic unless intentional. Loading is fast; thumbnails appear before full images. Tapping enters an immersive view where the media is the entire focus. Swiping between items should be smooth and predictable. Context (captions, dates, metadata) is available but not forced. Visual design stays neutral; the media itself provides the color and energy. Empty galleries prompt action immediately.

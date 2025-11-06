@@ -1,0 +1,3 @@
+# this is the messaging/chat bias
+
+Messaging and chat screens optimize for conversation flow and real-time feel. Messages are chronological; the newest is most important. Visual distinction between sent and received messages is immediate. Timestamps are present but subtle; the conversation itself dominates. Input is always accessible; the keyboard appears without delay. Sending should feel instant; no waiting. Typing indicators, read receipts, and presence signals make the conversation feel live. Visual design is minimal; bubbles and simple backgrounds keep focus on content. Media (photos, videos, files) should be easy to send and view inline. Threading or replies should not break conversation flow.

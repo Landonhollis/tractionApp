@@ -1,0 +1,3 @@
+# this is the empty state bias
+
+Empty state screens optimize for encouragement and action. Users should never feel abandoned or confused by emptiness. The reason for the empty state is clear—no data yet, no search results, no items added. Visual design is clean but not clinical; warmth and personality help. Illustrations or icons support understanding without adding clutter. The primary action is obvious and prominent—add an item, start a search, explore content. Empty states are opportunities, not dead ends. Language is encouraging and actionable, never blaming the user. If the emptiness is an error, explain simply and provide a path forward. White space here serves a purpose: making the call-to-action unmissable.

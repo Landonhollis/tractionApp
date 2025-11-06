@@ -1,0 +1,3 @@
+# this is the data dashboard bias
+
+Data dashboard screens optimize for insight at a glance. The most critical metrics appear first and largest. Charts and graphs communicate trends faster than numbers alone. Information density is high but organized into clear sections. Colors are semantic and consistent—users learn the visual language quickly. Comparative data (this week vs last week, us vs them) is prominent. White space creates groupings of related metrics. Users should grasp the big picture in seconds, then drill into details by choice. Animations are minimal; data updates should be noticeable but not distracting. Empty data states explain the absence rather than leave blank charts.

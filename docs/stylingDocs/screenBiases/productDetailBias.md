@@ -1,0 +1,3 @@
+# this is the product detail bias
+
+With product detail pages, less is more. because less is more, white space should be implimented generously. product details pages should also be soft and tactile. meaning shadows should be used generously to make the screen feel 3d and touchable. this also means corners shuold all be rounded and soft, transitions should be gentle, there should only be important text, and the images should be the focus. 

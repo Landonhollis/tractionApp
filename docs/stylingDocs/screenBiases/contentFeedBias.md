@@ -1,0 +1,3 @@
+# this is the content feed bias
+
+Content feed screens optimize for engagement and discoverability. Fresh content appears at the top; the feed feels alive. Infinite scroll encourages continued browsing; pagination interrupts flow. Visual variety prevents monotony—images, videos, text posts should feel distinct. Interaction points (like, comment, share) are accessible but don't dominate. Sponsored or promoted content is labeled but not jarringly different. Empty feed states encourage creation or following more sources. The visual design fades behind the content itself. Performance matters—sluggish scrolling kills engagement. Pull-to-refresh is expected. The feed should feel endless but never repetitive.

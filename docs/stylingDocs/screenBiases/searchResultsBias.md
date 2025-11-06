@@ -1,0 +1,3 @@
+# this is the search results bias
+
+Search results screens optimize for scannability and relevance. The most relevant results appear first; users rarely scroll far. Filtering and sorting are accessible and preserve the search query. Result previews show enough information to judge relevance without opening. Visual differentiation helps distinguish result types (ads, suggested, exact matches). Highlighting search terms aids scanning. Loading results should be fast; lazy loading keeps initial speed high. Empty results suggest alternatives or broaden the query rather than admit defeat. The search query remains visible and editable. Visual design stays neutral; results are the focus.

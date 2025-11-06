@@ -20,3 +20,8 @@ n/a
 ## TOOLS
 you have access to the supabase mcp server that conects to this project, as well as context7 mcp for documentaion. 
 
+
+## Global UI design bias - ONLY FOR STYLING AGENTS!!
+[ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace. 
+[ ]: businesness management - function first, graphs are less visual, more numeric. display is more plain, but more clear. 
+[ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate. 

@@ -1,0 +1,3 @@
+# this is the education/learning bias
+
+Education and learning apps optimize for focus and progression. Users should never feel lost; current position in the learning path must be clear. Lessons and modules are visually distinct and sequenced. Progress is tangible through completion indicators, unlocked content, and achievement markers. Visual design minimizes cognitive load; clarity beats creativity. Distractions are eliminated. Instructional content is clean and readable. Interactive elements are obvious and encouraging. Feedback on correctness is immediate and supportive. The app should feel like a patient teacher, not a test administrator. Hierarchy guides attention to the current learning objective. Complexity is introduced gradually, never all at once.

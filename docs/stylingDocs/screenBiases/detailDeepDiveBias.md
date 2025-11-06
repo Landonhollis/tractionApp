@@ -1,0 +1,3 @@
+# this is the detail/deep dive bias
+
+Detail and deep dive screens optimize for comprehensive information and structure. The most important information appears first, but completeness is expected. Sections are clearly delineated; users should navigate a long page effortlessly. Hierarchy guides attention through layers of detail. Related actions (edit, share, delete) are accessible but don't interrupt reading. Visual design supports long-form content—generous line height, readable font sizes, logical spacing. Images and media illustrate rather than decorate. Users came for details; provide them without apology. Tabs or collapsible sections manage complexity without hiding content. White space improves readability, not aesthetics.

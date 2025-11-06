@@ -1,0 +1,3 @@
+# this is the utility/tool bias
+
+Utility and tool apps optimize for speed and task completion. Users have a specific goal; every screen should move them toward it. Visual flourishes are distractions. Controls are obvious and direct. The fastest path to the core function is the default. Information architecture is flat; deep nesting is avoided. Feedback is immediate. Loading should be imperceptible or show clear progress. The app should feel lightweight and fast. Visual design is utilitarian—function dictates form. White space exists only to improve usability, not aesthetics. Power users appreciate shortcuts and advanced options, but defaults work for everyone. The app should fade into the background; the result is what matters.

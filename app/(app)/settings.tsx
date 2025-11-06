@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { supabase } from '../../services/supabaseClient'
 import {
   View,
   Text,
@@ -8,17 +9,23 @@ import {
   ScrollView,
 } from 'react-native'
 import { useAccount } from '../../providers/AccountProvider'
-import { getUserName, updateUserName } from '../../services/settingsService'
+import { getUserName, updateUserName, cycleTheme } from '../../services/settingsService'
+import { signOut } from '../../services/authServices'
+import { useRouter } from 'expo-router'
 
 // Types
 type SaveState = 'idle' | 'saving' | 'success' | 'error'
 
 export default function SettingsScreen() {
   const { session } = useAccount()
+  const router = useRouter()
   const [name, setName] = useState('')
   const [loading, setLoading] = useState(true)
   const [saveState, setSaveState] = useState<SaveState>('idle')
   const [error, setError] = useState<string | null>(null)
+  const [signingOut, setSigningOut] = useState(false)
+  const [switchingTheme, setSwitchingTheme] = useState(false)
+  const [themeMessage, setThemeMessage] = useState<string | null>(null)
 
   // Load user name on mount
   useEffect(() => {
@@ -72,6 +79,38 @@ export default function SettingsScreen() {
       setError(result.error || 'Failed to save name')
       setSaveState('error')
     }
+  }
+
+  const handleSignOut = async () => {
+    setSigningOut(true)
+    const result = await signOut()
+
+    if (result.success) {
+      // Navigate to index, which will redirect to auth screen
+      router.replace('/')
+    } else {
+      setError('Failed to sign out')
+      setSigningOut(false)
+    }
+  }
+
+  const handleSwitchTheme = async () => {
+    setSwitchingTheme(true)
+    setThemeMessage(null)
+
+    const result = await cycleTheme()
+
+    if (result.success) {
+      setThemeMessage(`Switched to ${result.newTheme}`)
+      // Clear message after 2 seconds
+      setTimeout(() => {
+        setThemeMessage(null)
+      }, 2000)
+    } else {
+      setThemeMessage('Failed to switch theme')
+    }
+
+    setSwitchingTheme(false)
   }
 
   // Loading state
@@ -200,6 +239,75 @@ export default function SettingsScreen() {
             >
               <Text style={{ color: '#C62828', fontSize: 14 }}>
                 {error}
+              </Text>
+            </View>
+          )}
+
+          {/* Sign Out button */}
+          <TouchableOpacity
+            onPress={handleSignOut}
+            disabled={signingOut}
+            style={{
+              backgroundColor: signingOut ? '#ccc' : '#FF3B30',
+              paddingVertical: 14,
+              borderRadius: 8,
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              marginTop: 32,
+              marginBottom: 16,
+            }}
+          >
+            {signingOut && (
+              <ActivityIndicator
+                size="small"
+                color="#fff"
+                style={{ marginRight: 8 }}
+              />
+            )}
+            <Text style={{ fontSize: 16, color: '#fff', fontWeight: '600' }}>
+              {signingOut ? 'Signing Out...' : 'Sign Out'}
+            </Text>
+          </TouchableOpacity>
+
+          {/* Switch Theme button */}
+          <TouchableOpacity
+            onPress={handleSwitchTheme}
+            disabled={switchingTheme}
+            style={{
+              backgroundColor: switchingTheme ? '#ccc' : '#007AFF',
+              paddingVertical: 14,
+              borderRadius: 8,
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              marginBottom: 16,
+            }}
+          >
+            {switchingTheme && (
+              <ActivityIndicator
+                size="small"
+                color="#fff"
+                style={{ marginRight: 8 }}
+              />
+            )}
+            <Text style={{ fontSize: 16, color: '#fff', fontWeight: '600' }}>
+              {switchingTheme ? 'Switching...' : 'Switch Theme'}
+            </Text>
+          </TouchableOpacity>
+
+          {/* Theme switch message */}
+          {themeMessage && (
+            <View
+              style={{
+                backgroundColor: '#34C759',
+                padding: 12,
+                borderRadius: 8,
+                alignItems: 'center',
+              }}
+            >
+              <Text style={{ color: '#fff', fontSize: 14, fontWeight: '600' }}>
+                {themeMessage}
               </Text>
             </View>
           )}

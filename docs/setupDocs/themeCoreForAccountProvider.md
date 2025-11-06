@@ -30,7 +30,9 @@ the 'standard theme core' consists of the following
 **first priority rule**
 - all this rule states is that if the theme core can be used it should. then next up is native wind. then if neither theme core nor native wind can work, then the style prop is to be used. 
 
-**status bar component** there should be a status bar component in the components folder that is to go in the _layout file. s
+**status bar component** there should be a status bar component in the components folder that is to go in the _layout file.
+
+**MESSAGE TO AGENT** If you are the 'setupAgent' you should NOT include real values in the theme core. a later agent who is in charge of establishing the theme core values will take care of this. you should just put blank values for a later agent to fill in. but do include the type for the objects so the later agent knows what vlaudes are accepted. 
 
 ### No Theme Core
 - sometimes apps will not use a theme core system. this is almost never the case, but if it is. then there are no theme core styles in the app, no theme objects, no theme saved in data base, just native wind and bare style props throughout the whole app. 

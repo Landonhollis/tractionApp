@@ -47,6 +47,12 @@ type LongPressState = {
   y: number
 }
 
+type QuickEntryState = {
+  visible: boolean
+  metric: Metric | null
+  newStatus: string
+}
+
 export default function ScoreCardsScreen() {
   const { session } = useAccount()
   const [companyMetrics, setCompanyMetrics] = useState<Metric[]>([])
@@ -60,6 +66,11 @@ export default function ScoreCardsScreen() {
     metric: null,
     x: 0,
     y: 0,
+  })
+  const [quickEntryState, setQuickEntryState] = useState<QuickEntryState>({
+    visible: false,
+    metric: null,
+    newStatus: '',
   })
   const [editingMetric, setEditingMetric] = useState<EditingMetric | null>(null)
   const [longPressTimer, setLongPressTimer] = useState<NodeJS.Timeout | null>(null)
@@ -109,6 +120,38 @@ export default function ScoreCardsScreen() {
     if (longPressTimer) {
       clearTimeout(longPressTimer)
       setLongPressTimer(null)
+    }
+  }
+
+  // Open quick entry modal for adding a new data point
+  const handleAddEntry = (metric: Metric) => {
+    setQuickEntryState({
+      visible: true,
+      metric,
+      newStatus: metric.current_status.toString(),
+    })
+    setLongPressState({ visible: false, metric: null, x: 0, y: 0 })
+  }
+
+  // Save quick entry (just update current_status)
+  const handleSaveQuickEntry = async () => {
+    if (!quickEntryState.metric) return
+
+    if (!quickEntryState.newStatus || isNaN(parseFloat(quickEntryState.newStatus))) {
+      Alert.alert('Error', 'Please enter a valid number')
+      return
+    }
+
+    try {
+      await updateMetric({
+        id: quickEntryState.metric.id,
+        current_status: parseFloat(quickEntryState.newStatus),
+      })
+      setQuickEntryState({ visible: false, metric: null, newStatus: '' })
+      await loadAllData()
+    } catch (error) {
+      console.error('Error adding entry:', error)
+      Alert.alert('Error', 'Failed to add entry')
     }
   }
 
@@ -304,6 +347,13 @@ export default function ScoreCardsScreen() {
               }}
             >
               <TouchableOpacity
+                onPress={() => handleAddEntry(longPressState.metric!)}
+                style={{ paddingVertical: 12, paddingHorizontal: 16 }}
+              >
+                <Text style={{ fontSize: 16 }}>Add Entry</Text>
+              </TouchableOpacity>
+              <View style={{ height: 1, backgroundColor: '#e5e7eb' }} />
+              <TouchableOpacity
                 onPress={() => handleEdit(longPressState.metric!)}
                 style={{ paddingVertical: 12, paddingHorizontal: 16 }}
               >
@@ -317,6 +367,83 @@ export default function ScoreCardsScreen() {
                 <Text style={{ fontSize: 16, color: '#ef4444' }}>Delete</Text>
               </TouchableOpacity>
             </View>
+          </Pressable>
+        </Modal>
+      )}
+
+      {/* Quick Entry modal */}
+      {quickEntryState.visible && quickEntryState.metric && (
+        <Modal transparent visible={quickEntryState.visible} animationType="fade">
+          <Pressable
+            style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' }}
+            onPress={() => setQuickEntryState({ visible: false, metric: null, newStatus: '' })}
+          >
+            <Pressable
+              onPress={(e) => e.stopPropagation()}
+              style={{
+                backgroundColor: '#fff',
+                borderRadius: 12,
+                padding: 24,
+                width: '90%',
+                maxWidth: 400,
+              }}
+            >
+              <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 8 }}>
+                Add Entry
+              </Text>
+              <Text style={{ fontSize: 14, color: '#6b7280', marginBottom: 16 }}>
+                {quickEntryState.metric.description}
+              </Text>
+
+              <Text style={{ fontSize: 14, fontWeight: '600', marginBottom: 4 }}>
+                New Status
+              </Text>
+              <TextInput
+                value={quickEntryState.newStatus}
+                onChangeText={(text) => setQuickEntryState({ ...quickEntryState, newStatus: text })}
+                style={{
+                  borderWidth: 1,
+                  borderColor: '#d1d5db',
+                  borderRadius: 8,
+                  padding: 12,
+                  marginBottom: 8,
+                  fontSize: 16,
+                }}
+                placeholder="Enter new value"
+                keyboardType="numeric"
+                autoFocus
+              />
+              <Text style={{ fontSize: 12, color: '#6b7280', marginBottom: 16 }}>
+                Range: {quickEntryState.metric.min} - {quickEntryState.metric.max}
+              </Text>
+
+              <View style={{ flexDirection: 'row', gap: 12 }}>
+                <TouchableOpacity
+                  onPress={() => setQuickEntryState({ visible: false, metric: null, newStatus: '' })}
+                  style={{
+                    flex: 1,
+                    backgroundColor: '#e5e7eb',
+                    padding: 14,
+                    borderRadius: 8,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text style={{ fontSize: 16, fontWeight: '600' }}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={handleSaveQuickEntry}
+                  style={{
+                    flex: 1,
+                    backgroundColor: '#000',
+                    padding: 14,
+                    borderRadius: 8,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text style={{ fontSize: 16, fontWeight: '600', color: '#fff' }}>Save</Text>
+                </TouchableOpacity>
+              </View>
+            </Pressable>
           </Pressable>
         </Modal>
       )}

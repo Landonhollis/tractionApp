@@ -1,0 +1,3 @@
+# this is the health/fitness bias
+
+Health and fitness apps optimize for motivation and progress visibility. Users want encouragement, not complexity. Progress should be celebrated visually—charts, streaks, and achievements are motivating. Colors are energetic and positive. Actions are simple and clear; starting a workout or logging data should take seconds. Gamification elements (badges, levels, streaks) drive engagement without feeling childish. Empty states encourage action rather than judge inactivity. Visual design should feel supportive and optimistic. Numbers are important but should not overwhelm. Community features (leaderboards, sharing) are optional motivators. The app should feel like a supportive coach, not a strict drill sergeant.

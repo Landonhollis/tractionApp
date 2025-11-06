@@ -1,0 +1,3 @@
+# this is the shopping/browse bias
+
+Shopping and browse screens optimize for rapid scanning and comparison. Grids are preferred over lists; users evaluate visually before reading. Product images must be prominent and consistent in size. Filtering should be accessible but not intrusive. Key information—price, name, rating—is visible without tapping. The ability to switch views (grid, list, detailed) respects different shopping styles. White space prevents overwhelm; crowding kills conversion. Hierarchy guides the eye through many items efficiently. Loading new items should feel seamless. Empty results from filters should suggest adjustments, not dead ends.

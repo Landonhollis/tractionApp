@@ -1,0 +1,3 @@
+# this is the food/delivery bias
+
+Food and delivery apps optimize for appetite appeal and speed. Food photography is the hero; images must look delicious and prominent. Ordering should be frictionless—every extra tap risks abandonment. Customization is expected but should not slow decisions. Real-time tracking during delivery reduces anxiety. Prices are always visible and honest. The cart is accessible from anywhere. Visual design should enhance food imagery, not compete with it. Hierarchy prioritizes popular items, recommendations, and current cravings. Empty states prompt action immediately. Colors are warm and appetizing, never cold or clinical. The app should satisfy hunger, not add frustration.

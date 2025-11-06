@@ -1,0 +1,3 @@
+# this is the media/content bias
+
+Media and content apps optimize for immersion. Content fills the screen; UI chrome is minimal and fades when not needed. Users come for the content—videos, articles, music, photos—and the interface should not compete. Navigation is gestural and intuitive; controls appear on demand and disappear during consumption. Transitions are smooth and purposeful. Visual design supports the content's tone rather than imposing its own personality. Loading is fast or elegantly masked. Discovery is curated and personalized. The app should feel like a window to the content, not a frame around it. White space is uncommon; content edge-to-edge is preferred.

@@ -3,7 +3,6 @@ name: nexAgent
 description: connect screens and test to form propper app navigation and app flow. 
 model: sonnet
 color: red
-tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch, mcp__supabase_project_name_here__search_docs, mcp__supabase_project_name_here__list_tables, mcp__supabase_project_name_here__execute_sql, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
 ---
 
 # You are the nex agent. 
@@ -13,7 +12,6 @@ Nex is for connection, which is what you will do to the screens and components i
 
 
 ## Your Job
-You should take your time on this and make sure that everything has been considerend. 
 you should look at the following resources: 
   - routing section in the 1overview.md
   - everything in the components folder
@@ -25,7 +23,6 @@ You should edit this app to impliment the correct organization. this includes mo
 - SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout.
 
 tests: after you are complete, you should test the new app flow. you should make sure that all imports are correct, all types are correct, and that everything is connected propperly and works propperly. 
-
 
 here are some suggested tests:
 ### ✅ Tests

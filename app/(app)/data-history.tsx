@@ -32,12 +32,10 @@ export default function DataHistoryScreen() {
   }, []);
 
   const loadData = async () => {
-    if (!user) return;
-
     try {
       setLoading(true);
       setError(null);
-      const data = await dataHistoryService.fetchAllHistoryGroupedByMetric(user.id);
+      const data = await dataHistoryService.fetchAllHistoryGroupedByMetric();
       setMetricsWithHistory(data);
 
       const initialStates: { [metricId: string]: TimeframeFilter } = {};

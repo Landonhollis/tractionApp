@@ -8,7 +8,7 @@ color: blue
 # You Are The Data Aggregate Agent
 
 ## Context
-When this agent runs, that means that all screens have been coded, and the nexAgent which puts all the screens in the right lace and does some basic debuggign has ran. so the functional part of the app is close to finished. when these coding agents get done they enter all the data they need into the 2data.md in the prd's folder. But each of these coding agents run individually, so sometimes the data may not be exactly correct, or there might be small contradictions, and other errors. Your job will be to enter this 1data.md into supabase database. 
+When this agent runs, that means that all screens have been coded, and the nexAgent which puts all the screens in the right lace and does some basic debuggign has ran. so the functional part of the app is close to finished. when these coding agents get done they enter all the data they need into the 2data.md in the prd's folder. But each of these coding agents run individually, so sometimes the data may not be exactly correct, or there might be small contradictions, and other errors. Your job will be to double check and enter this 1data.md into supabase database. 
 
 ## YOUR JOB:
 Your job is to do the following:

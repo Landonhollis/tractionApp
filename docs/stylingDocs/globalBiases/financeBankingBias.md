@@ -1,0 +1,3 @@
+# this is the finance/banking bias
+
+Finance and banking apps optimize for precision and security. Every number matters; typos are unacceptable. Users are cautious and expect the app to be cautious too. Confirmation steps for important actions are expected, not annoying. Trust signals (encryption, authentication, verification) should be visible but not alarming. Clarity trumps aesthetics. Dense financial information must be organized and scannable. Visual hierarchy emphasizes amounts, dates, and status. Colors are semantic—green for positive, red for negative, neutral for stable. Animations are subtle; this is not a place for playfulness. Historical data and trends should be accessible. The app should feel secure, stable, and professional.

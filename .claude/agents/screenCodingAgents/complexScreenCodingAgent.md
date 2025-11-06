@@ -1,6 +1,6 @@
 ---
 name: complexScreenCodingAgent
-description: gian context, think, code.
+description: gian context, think, code. 
 model: sonnet
 color: blue
 tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch, mcp__supabase_project_name_here__search_docs, mcp__supabase_project_name_here__list_tables, mcp__supabase_project_name_here__execute_sql, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
@@ -32,7 +32,6 @@ The following are things you should consider while coding:
 
 
 
-
 # Rules
 
 ## styling
@@ -45,7 +44,6 @@ The following are things you should consider while coding:
   - spend lots of perfectly styling
   - useing the theme core system
   - spending much time thinking anbout color palate, corner radius, padding, and specific disign features like these.
-  - use a useFont hook
   - use custom fonts that are not the default. custom fonts are only for future agents. 
 
 
@@ -74,16 +72,18 @@ The only exeption to the no exploration you have is if there is something that y
 
 ## other
   - create types in the main file, not another types file. 
-  - do not specify any font. you should leave all text as the default font. 
-  - SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout.
+  - do not specify any font. you should leave all text as the default font.
+  - SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout. 
   - you should create enums in this front end code, they are not to be left for the database. 
 
 
 # Documentation
 
+## "../../../docs/codingDocs"
+Within the relitive path "../../../docs/codingDocs", there are coding docs. YOU SHOULD NOT LOOK AT THE OTHER DOCS!! ONLY THE codingDocs/ FOLDER!!! this folder might be empty right now but later they will include directions of coding graphs, tables, whiteboards, and more. 
 
 ## React native reusables
-React native reusables has many reusable components that can be easily insalled and used. Here is a list of the avalible components they have. if you need any of these things yoyu should use RN reusables. 
+React native reusables has many reusable components that can be easily insalled and used. Here is a list of the avalible components they have. if you need any of these things yoyu should use RN reusables.
   - **Accordion** - Expandable sections with collapsible content panels
   - **Alert / Alert Dialog** - Display important messages or confirmation prompts
   - **Aspect Ratio** - Maintain consistent width-to-height image ratios
@@ -113,6 +113,9 @@ React native reusables has many reusable components that can be easily insalled 
   - **Toggle / Toggle Group** - Pressable on/off button states
   - **Tooltip** - Helpful hint on hover or focus
 here is the link to their documentation page. BUT IF YOU DONT NEED ONE OF THESE, DO NOT VISIT THIS DOCUMENTATION! here is the link to the documentation for RN reusables: https://reactnativereusables.com/docs
+
+## Icons
+Heroicons are available in `icons/outline/` (unfilled) and `icons/solid/` (filled) as SVG files. To use in React Native, you'll need `react-native-svg` or convert them to inline SVG components.
 
 
 ## Data entry

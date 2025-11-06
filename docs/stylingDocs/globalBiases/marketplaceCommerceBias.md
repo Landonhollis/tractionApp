@@ -1,0 +1,3 @@
+# this is the marketplace/commerce bias
+
+Marketplace and commerce apps optimize for trust and conversion. Product imagery is paramount—users decide with their eyes first. Every screen guides toward a purchase decision without feeling pushy. Trust signals (reviews, ratings, secure checkout indicators) are prominent but not overwhelming. Comparison should be effortless. CTAs are clear and confident, never ambiguous. Price is always visible and honest. Visual hierarchy prioritizes what drives purchase decisions. The experience should feel premium, even for budget products. Loading states and empty carts matter—never leave users uncertain. Colors support brand but don't distract from products. Friction in checkout is the enemy.
