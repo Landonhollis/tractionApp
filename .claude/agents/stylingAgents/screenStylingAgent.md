@@ -65,32 +65,12 @@ Heroicons are available in `icons/outline/` (unfilled) and `icons/solid/` (fille
 ---
 
 ## THEME CORE SYSTEM (PRIMARY METHOD)
+You should use the themeCore system wherever you can. You should go to the ThemeCore documentation found in this project to learn about it. 
 
-Use `ps()` function with theme tokens:
-
-```tsx
-// ❌ Before
-<View style={{ backgroundColor: '#1a1a1a', borderRadius: 8, padding: 16 }}>
-  <Text style={{ color: '#e5e5e5', fontSize: 16 }}>Hello</Text>
-</View>
-
-// ✅ After
-<View style={ps('bg-2 br-3 p-16')}>
-  <Text style={ps('text-normal text-md')}>Hello</Text>
-</View>
-```
-
-**Available Tokens**:
-- **Fonts**: `f-1` to `f-6`, `fw-200` to `fw-800`
-- **Sizes**: `text-xs`, `text-sm`, `text-md`, `text-lg`, `text-xl`, `text-2xl`
-- **Backgrounds**: `bg-1` to `bg-6` (neutral), `bg-a1` to `bg-a3` (accent)
-- **Text**: `text-normal`, `text-muted`, `text-strong`, `text-inverse`, `text-a1` to `text-a3`
-- **Borders**: `br-0` to `br-4`, `bw-0` to `bw-4`, `bc-normal`, `bc-muted`, `bc-strong`, `bc-accent`
-- **Shadows**: `shadow-1`, `shadow-2`, `shadow-3`
-
-**Use regular styles for**: layout (flex, margins), positioning (absolute, z-index), dimensions (width, height)
-
----
+here is the following desicion hiarchy of what styling to use. 
+  1. ThemeCore
+  2. if it is not found in theme core, use native wind classname. 
+  3. if it is in neither of these or does not work with these then you should use the normal style prop, but this is last resort. 
 
 ## DECISION FRAMEWORKS
 
