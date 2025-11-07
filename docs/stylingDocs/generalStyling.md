@@ -1,5 +1,39 @@
 # General Styling Guide
 
+## Global UI Design Bias
+
+The global UI design bias is a high-level design philosophy that guides all styling decisions across the entire app. This bias is defined in `prd's/1overview.md` under the section "Global UI design bias - ONLY FOR STYLING AGENTS!!!"
+
+### Purpose
+The global bias should be added as a comment to the bottom of all screen and component files that were created via SRDs (Screen Requirements Documents). This ensures that when styling agents work on these files, they have immediate context about the app's overall design direction.
+
+### Comment Format
+The global bias should be added to files using this exact format:
+
+```tsx
+/*
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [PASTE THE EXACT GLOBAL BIAS TEXT FROM 1overview.md HERE]
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */
+```
+
+### Where to Add
+- Add to all screen files in `/app/**/*.tsx` that were specified in SRDs
+- Add to all component files in `/components/**/*.tsx` that were specified in SRDs
+- Do NOT add to layout files or other infrastructure files unless they were explicitly defined in an SRD
+
+### Important Rules
+- Only append the comment at the bottom of files - never modify existing functional code
+- Only add to files that correspond to SRD specifications
+- Preserve all existing content exactly as is
+
 ## Layout & Spacing
 
 ### Spacing Consistency

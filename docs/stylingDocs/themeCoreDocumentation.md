@@ -2,8 +2,8 @@
 
 
 ## OVERVIEW
-the theme core system gives a very easy way to have highly customizable and user changeable styling all across the app. it does this mainly via the 'ps' function, which stands for parse styles. in the style prop in the tsx, the coder should input ps(styles here) in a native wind format. the ps function uses the all themes object to map these native wind type styles to the proper real styles that will work in the style prop. when the user uses the changeTheme function, it should update the theme in the backend/database and also update the theme immediately in the app so that the app does not have to listen live to the backend changes. for simplicity, all screens and components, even before the user signs in, should use these styles and if themeName is 'null', like it will be before the user signs in, then the system should default to the first theme (might not be named theme1). these themes will need to be loaded a bit differently in the _layout file for the status bar as shown below. 
-  - note: the keys for every key value pair is the same in each theme object. 
+the theme core system gives a very easy way to have highly customizable and user changeable styling all across the app. it does this mainly via the 'ps' function, which stands for parse styles. in the style prop in the tsx, the coder should input ps(styles here) in a native wind format. the ps function uses the all themes object to map these native wind type styles to the proper real styles that will work in the style prop. when the user uses the changeTheme function, it should update the theme in the backend/database and also update the theme immediately in the app so that the app does not have to listen live to the backend changes. for simplicity, all screens and components, even before the user signs in, should use these styles and if themeName is 'null', like it will be before the user signs in, then the system should default to the first theme (might not be named theme1). these themes will need to be loaded a bit differently in the _layout file for the status bar as shown below.
+  - note: the keys for every key value pair is the same in each theme object.
 
 
 ## WHEN TO USE
@@ -20,8 +20,13 @@ ctn
 
 
 ## THE 'allThemes' OBJECT
-- The following are the theme objects that the ps function should use to map the native wind styles to the real style prop styles. note: the names of each object may not stay the same, there may be more or less themes depending on what is required and a type should be made for the objects. 
-- theme objects should go in the assets folder, and in the themeObjects.tsx file. 
+- The following are the theme objects that the ps function should use to map the native wind styles to the real style prop styles. note: the names of each object may not stay the same, there may be more or less themes depending on what is required and a type should be made for the objects.
+- theme objects should go in the assets folder, and in the themeObjects.tsx file.
+
+### Important Naming Rules
+- **DO NOT change the object names** (e.g., `theme1`, `theme2`, etc.) once they are established, as other parts of the codebase may reference these names
+- **The `themeName` field WITHIN the theme object CAN be changed** to a more descriptive name (e.g., from `themeName: 'theme1'` to `themeName: 'darkProfessional'`)
+- All themes must have the same keys - only the values differ between themes 
 ```tsx
 export const allThemes = {
   theme1: {
