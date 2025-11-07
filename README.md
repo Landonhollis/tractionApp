@@ -30,9 +30,11 @@
       - the nex Agent takes all seperated screens, and conjoins them into a propper app by sorting them into the right files for navigation, making sure imports are accurate, checking that everything connects to geather propperly, and the the app flows as it should. 
    ## styling
    SETUP
-      - The first part of the styling is the stylingSetupAgent.
-      1.  this agent figures out what global biases apply to the app, and adds them to each of the tsx files created by the coding agent.
-      2. Then this agent looks at the '1overview.md ## Theme Object Descriptions' and the theme core selection docs from the './docs/stylingDocs' folder in order to actually fill in the values for the theme objects. 
+      fontsAgent
+         - this agent looks through all the needs of the app, and all fonts in the assets folder, then loads in the propper fonts into the _layout file and the app.json so that the styling agents can use them. 
+      stylingSetupAgent.
+         1.  this agent figures out what global biases apply to the app, and adds them to each of the tsx files created by the coding agent.
+         2. Then this agent looks at the '1overview.md ## Theme Object Descriptions' and the theme core selection docs from the './docs/stylingDocs' folder in order to actually fill in the values for the theme objects. 
    SCREEN STYLING
       - one instance of the the screenStylingAgent will run on each tsx file that was created by the coding agents. 
       - this styling agent will first read the tsx file it was given, then go to the screenBiasesDirectory.md to find out what screen biases the screen should have. then it will go to the the entitiesDirectory.md to find out if it should look here for any styling guidence. 

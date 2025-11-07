@@ -143,6 +143,7 @@ interface Account {
 
 ## Key Notes
 
+- THIS SHOULD BE IN THE SAME FILE AS THE THEME OBJECTS. TYPES SHOULD NOT HAVE THEIR OWN FILE!
 - `Ct` (Current Theme) represents the shape of a single theme object
 - `Ctn` (Current Theme Name) is a union of all valid theme names
 - Use `typeof` to infer types directly from the theme object

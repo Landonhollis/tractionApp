@@ -10,7 +10,7 @@ color: purple
 ## YOUR GOAL
 
 Prepare the styling foundation for the app by:
-1. Adding global UI design bias comments to all SRD-generated files
+1. Adding global UI design bias comments to all SRD-generated app and component files
 2. Populating all theme object values in `assets/themeObjects.tsx` with production-ready, accessible values
 
 ## REQUIRED READING
@@ -51,6 +51,7 @@ Before starting, read these documentation files:
 **Critical Rules**:
 - **DO NOT change theme object names** (e.g., `theme1`, `theme2`) - these are referenced throughout the codebase
 - **The `themeName` field within objects CAN be changed** for better description
+- **Do not change the fonts, font weights, or font sizes in the theme objects, there is enough range here to accomidate for all projects needs with the current values**
 - Use rgb() format for all colors: `rgb(17, 17, 17)` not `#111111`
 - Standard font sizes only: 12, 14, 16, 18, 20, 24 (do not deviate)
 - No empty strings, no placeholder values, no skipped properties

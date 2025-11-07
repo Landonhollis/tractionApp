@@ -25,3 +25,18 @@ you have access to the supabase mcp server that conects to this project, as well
 [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace. 
 [ ]: businesness management - function first, graphs are less visual, more numeric. display is more plain, but more clear. 
 [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate. 
+[ ]: custom: (custom global style here. ex: text size, font selection, color placement, contrast, statefull creativity, component design, minimalism level, level of 3-d'ness, polish specifications)
+
+## Theme Descriptions - for stylingSetupAgent ONLY!
+Entities to describe
+    - borders width
+    - border radius
+    - shadows
+    - color palate (dark / light, how dark / light? tint? contrast? accents?)
+    - filled in (components and sections filled withe the color) or outlined (sections and components are generally similar to background and the seperation is just outline). 
+    - font style
+The following are the Themes(x/10 is an adjactive modifier. ex: '7/10lage' means mostly large, but not all the way large. '2/10 large' would still be large, but just a little bit large)
+    theme1: very dark, gold accent, meduim contrast, faint white shadows, medium border radius, medium border width, outlined. 
+    theme2: somewhat dark, like navy blue dark, peach variant accents, 6/10large border widths and large rounded corners, filled in, ariel type fonts nothing like times new roman. 
+    theme3: 5/10dark, like ash grey, dark orange and ocean accent colors. small rounded corners, small border width, filled in. 
+    theme4: light, 3/10tan tint, darker shades get closer to a brown, navy blue and natural blue accents. medium corner roundness, border width, and shadows. filled in, fonts close to times new roman, nothing like ariel. 
