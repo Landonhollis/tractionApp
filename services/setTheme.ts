@@ -1,5 +1,5 @@
 import { updateThemeName } from './accountProviderServices'
-import { Ctn } from '../assets/themeTypes'
+import { Ctn } from '../assets/themeObjects'
 
 /**
  * Updates the theme in the database

@@ -148,3 +148,5 @@ interface Account {
 - `Ctn` (Current Theme Name) is a union of all valid theme names
 - Use `typeof` to infer types directly from the theme object
 - Theme names in the union type should match keys in `allThemes`
+- Font families (`'f-1'` through `'f-6'`) are initially placeholders, populated by fontsAgent based on theme descriptions
+- All other placeholder values are filled by stylingSetupAgent during styling setup phase

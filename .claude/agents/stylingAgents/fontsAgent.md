@@ -7,18 +7,39 @@ color: green
 
 # YOUR JOB
 
-## 1. look at fonts directory
-In the assets/fonts folder there is a fonts directory where you should read about all the fonts that are preloaded into this project. dont go through all font files, just look at the directory. 
+## 1. Read documentation resources
+Before analyzing font needs, read these files to understand the app's design direction:
+- `assets/fonts/1fontsDirectory.md` - All available fonts and their characteristics
+- `prd's/1overview.md` - Global UI design bias and theme descriptions
+- `docs/stylingDocs/generalStyling.md` - Universal styling principles and global bias context
+- `srd's/` folder - All Screen Requirement Documents describing screen purposes and functionality
 
-## 2. look at asthetic needs of the app
-You should look in the 1overview.md in the prd's folder and look ONLY at the global bias section, AND the theme objects section (to see if there are any font specifications) Then you should look at the srd's in the srd's folder. these are markdowns of requirement documents of all of the screens that have been made. Then you should look in the app folder at all the current screens and pay close attention to the screen bias at the bottom of each of these tsx files. 
+## 2. Analyze aesthetic needs of the app
+Based on your reading:
+- **Global bias** from 1overview.md tells you the overall design philosophy (presentational/business/shop/custom)
+- **Theme descriptions** from 1overview.md tell you font style requirements for each theme
+- **SRDs** tell you what screens exist and their functional requirements
+- Use these to determine what font categories you need (body text, headings, display, etc.)
 
-## 3. ADD FONTS!
-Based on the research you have done, you should consider the possible fonts needed, and add those fonts from the assets folder into the actual app to be accessable. 
-**How to add fonts** you should add the fonts to app.json, and you should also add them to the _layout file so that they load on app launch. 
+## 3. Select fonts from the directory
+Based on your analysis, select fonts from `assets/fonts/1fontsDirectory.md`:
+- Choose fonts that align with global bias and theme descriptions
+- Follow the selection biases in the directory (prefer variable fonts, readable for body text, etc.)
+- Typically need 4-8 fonts total covering: body text, headings, display/accent, possibly specialized uses
 
-## 4. add comment
-In the _layout file where you added the fonts, at the very bottom, you should include a comment of the description of each font you added. these descriptions should come straight from the fontsDirectory. this will help later styling agents know what each font is for. 
+## 4. Add fonts to theme objects
+**CRITICAL**: You must populate the font fields in `assets/themeObjects.tsx` for ALL themes:
+- `'f-1'` through `'f-6'` in each theme object
+- Assign fonts based on theme descriptions (e.g., theme2 wants "arial type fonts nothing like times new roman")
+- Use the exact font family names as they will be registered
+
+## 5. Load fonts into the app
+Add selected fonts to make them accessible:
+- Add to `app.json` plugin configuration
+- Add to `app/_layout.tsx` using useFonts hook so they load on app launch
+
+## 6. Document your choices
+At the very bottom of `app/_layout.tsx`, add a comment listing each font you added with its description from the fontsDirectory. This helps later styling agents understand what each font is for. 
 
 
 # considerations

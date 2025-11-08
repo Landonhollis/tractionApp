@@ -1,19 +1,24 @@
-// IMPORTANT: Keep these placeholder constants (p, p2, p3) AND all placeholder values inside theme objects
-// until stylingSetupAgent runs. The stylingSetupAgent will replace all p, p2, p3 references with real values
-// and delete these three constants. Do NOT manually delete or replace these - let stylingSetupAgent handle it.
+// IMPORTANT: Keep these placeholder constants (p, p2, p3, pFont) AND all placeholder values inside theme objects
+// until the styling agents run. The agents will replace placeholders with real values and delete these constants.
+// Do NOT manually delete or replace these - let the agents handle it.
+//
+// AGENT WORKFLOW:
+// 1. fontsAgent: Replaces pFont with actual font family names in 'f-1' through 'f-6' for all themes
+// 2. stylingSetupAgent: Replaces p, p2, p3 with real values for colors, sizes, shadows, etc., and deletes all placeholder constants
 const p = 0;
 const p2 = 'rgb(0, 0, 0)'
 const p3 = 'light' as const;
+const pFont = 'PLACEHOLDER_FONT'; // fontsAgent will replace this
 
 export const allThemes = {
   theme1: {
     themeName: 'theme1',
-    'f-1': { fontFamily: 'Lora' },
-    'f-2': { fontFamily: 'Lora-Italic' },
-    'f-3': { fontFamily: 'DM' },
-    'f-4': { fontFamily: 'DM-Italic' },
-    'f-5': { fontFamily: 'Lora' },
-    'f-6': { fontFamily: 'Lora' },
+    'f-1': { fontFamily: pFont },
+    'f-2': { fontFamily: pFont },
+    'f-3': { fontFamily: pFont },
+    'f-4': { fontFamily: pFont },
+    'f-5': { fontFamily: pFont },
+    'f-6': { fontFamily: pFont },
     'fw-200': { fontWeight: '200' as const },
     'fw-300': { fontWeight: '300' as const },
     'fw-400': { fontWeight: '400' as const },
@@ -80,12 +85,12 @@ export const allThemes = {
   },
   theme2: {
     themeName: 'theme2',
-    'f-1': { fontFamily: 'Lora' },
-    'f-2': { fontFamily: 'Lora-Italic' },
-    'f-3': { fontFamily: 'DM' },
-    'f-4': { fontFamily: 'DM-Italic' },
-    'f-5': { fontFamily: 'Lora' },
-    'f-6': { fontFamily: 'Lora' },
+    'f-1': { fontFamily: pFont },
+    'f-2': { fontFamily: pFont },
+    'f-3': { fontFamily: pFont },
+    'f-4': { fontFamily: pFont },
+    'f-5': { fontFamily: pFont },
+    'f-6': { fontFamily: pFont },
     'fw-200': { fontWeight: '200' as const },
     'fw-300': { fontWeight: '300' as const },
     'fw-400': { fontWeight: '400' as const },
@@ -152,12 +157,12 @@ export const allThemes = {
   },
   theme3: {
     themeName: 'theme3',
-    'f-1': { fontFamily: 'Lora' },
-    'f-2': { fontFamily: 'Lora-Italic' },
-    'f-3': { fontFamily: 'DM' },
-    'f-4': { fontFamily: 'DM-Italic' },
-    'f-5': { fontFamily: 'Lora' },
-    'f-6': { fontFamily: 'Lora' },
+    'f-1': { fontFamily: pFont },
+    'f-2': { fontFamily: pFont },
+    'f-3': { fontFamily: pFont },
+    'f-4': { fontFamily: pFont },
+    'f-5': { fontFamily: pFont },
+    'f-6': { fontFamily: pFont },
     'fw-200': { fontWeight: '200' as const },
     'fw-300': { fontWeight: '300' as const },
     'fw-400': { fontWeight: '400' as const },
@@ -224,12 +229,12 @@ export const allThemes = {
   },
   theme4: {
     themeName: 'theme4',
-    'f-1': { fontFamily: 'Lora' },
-    'f-2': { fontFamily: 'Lora-Italic' },
-    'f-3': { fontFamily: 'DM' },
-    'f-4': { fontFamily: 'DM-Italic' },
-    'f-5': { fontFamily: 'Lora' },
-    'f-6': { fontFamily: 'Lora' },
+    'f-1': { fontFamily: pFont },
+    'f-2': { fontFamily: pFont },
+    'f-3': { fontFamily: pFont },
+    'f-4': { fontFamily: pFont },
+    'f-5': { fontFamily: pFont },
+    'f-6': { fontFamily: pFont },
     'fw-200': { fontWeight: '200' as const },
     'fw-300': { fontWeight: '300' as const },
     'fw-400': { fontWeight: '400' as const },
@@ -295,3 +300,18 @@ export const allThemes = {
     'sb-style': p3,
   },
 }
+
+// =============================================================================
+// THEME TYPES
+// =============================================================================
+// IMPORTANT: Types should always be in the same file as the objects they type.
+// Do not create separate type files - keep types colocated with their data.
+
+// Infer the theme object type from theme1
+export type Ct = typeof allThemes.theme1
+
+// Define all valid theme names
+export type Ctn = keyof typeof allThemes
+
+// Type for status bar style
+export type StatusBarStyle = 'light' | 'dark'

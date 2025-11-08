@@ -23,9 +23,11 @@ you have access to the supabase mcp server that conects to this project, as well
 
 ## Global UI design bias - ONLY FOR STYLING AGENTS!!
 [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace. 
-[ ]: businesness management - function first, graphs are less visual, more numeric. display is more plain, but more clear. 
+[x]: businesness management - function first, graphs are less visual, more numeric. display is more plain, but more clear. 
 [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate. 
-[ ]: custom: (custom global style here. ex: text size, font selection, color placement, contrast, statefull creativity, component design, minimalism level, level of 3-d'ness, polish specifications)
+[x]: custom: emphasis on well defined sections, very distinctivley seperated. this is because of the amount of business information that needs to be easily scrolled through. 
+
+- custom global styles examples (just a reminder for humans): text size, font selection, color placement, contrast, statefull creativity, component design specifications, minimalism level, level of 3-d'ness, polish specifications. 
 
 ## Theme Descriptions - for stylingSetupAgent ONLY!
 Entities to describe

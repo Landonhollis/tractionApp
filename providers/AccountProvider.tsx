@@ -2,10 +2,9 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { supabase } from '../services/supabaseClient'
 import { getAccountData } from '../services/accountProviderServices'
 import { createUserAccount } from '../services/authServices'
-import { allThemes } from '../assets/themeObjects'
+import { allThemes, Ctn, Ct } from '../assets/themeObjects'
 import { setTheme as setThemeService } from '../services/setTheme'
 import { ps as psUtil } from '../utilities/ps'
-import { Ctn, Ct } from '../assets/themeTypes'
 import type { Session } from '@supabase/supabase-js'
 
 interface Account {

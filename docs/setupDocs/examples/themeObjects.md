@@ -9,22 +9,27 @@ in the following example the theme names and quanity of themes are flexible.
 { theme object types here in the same file}
 
 ```tsx
-// IMPORTANT: Keep these placeholder constants (p, p2, p3) AND all placeholder values inside theme objects
-// until stylingSetupAgent runs. The stylingSetupAgent will replace all p, p2, p3 references with real values
-// and delete these three constants. Do NOT manually delete or replace these - let stylingSetupAgent handle it.
+// IMPORTANT: Keep these placeholder constants (p, p2, p3, pFont) AND all placeholder values inside theme objects
+// until the styling agents run. The agents will replace placeholders with real values and delete these constants.
+// Do NOT manually delete or replace these - let the agents handle it.
+//
+// AGENT WORKFLOW:
+// 1. fontsAgent: Replaces pFont with actual font family names in 'f-1' through 'f-6' for all themes
+// 2. stylingSetupAgent: Replaces p, p2, p3 with real values for colors, sizes, shadows, etc., and deletes all placeholder constants
 const p = 0;
 const p2 = 'rgb(0, 0, 0)'
 const p3 = 'light' as const;
+const pFont = 'PLACEHOLDER_FONT'; // fontsAgent will replace this
 
 export const allThemes = {
   theme1: {
     themeName:'theme1',
-    'f-1': { fontFamily: 'Lora' },
-    'f-2': { fontFamily: 'Lora-Italic' },
-    'f-3': { fontFamily: 'DM' },
-    'f-4': { fontFamily: 'DM-Italic' },
-    'f-5': { fontFamily: 'Lora' },
-    'f-6': { fontFamily: 'Lora' },
+    'f-1': { fontFamily: pFont },
+    'f-2': { fontFamily: pFont },
+    'f-3': { fontFamily: pFont },
+    'f-4': { fontFamily: pFont },
+    'f-5': { fontFamily: pFont },
+    'f-6': { fontFamily: pFont },
     'fw-200': { fontWeight: '200' as const },
     'fw-300': { fontWeight: '300' as const },
     'fw-400': { fontWeight: '400' as const },
@@ -91,12 +96,12 @@ export const allThemes = {
   },
   theme2: {
     themeName:'theme2',
-    'f-1': { fontFamily: 'Lora' },
-    'f-2': { fontFamily: 'Lora-Italic' },
-    'f-3': { fontFamily: 'DM' },
-    'f-4': { fontFamily: 'DM-Italic' },
-    'f-5': { fontFamily: 'Lora' },
-    'f-6': { fontFamily: 'Lora' },
+    'f-1': { fontFamily: pFont },
+    'f-2': { fontFamily: pFont },
+    'f-3': { fontFamily: pFont },
+    'f-4': { fontFamily: pFont },
+    'f-5': { fontFamily: pFont },
+    'f-6': { fontFamily: pFont },
     'fw-200': { fontWeight: '200' as const },
     'fw-300': { fontWeight: '300' as const },
     'fw-400': { fontWeight: '400' as const },
@@ -163,12 +168,12 @@ export const allThemes = {
   },
   theme3: {
     themeName:'theme3',
-    'f-1': { fontFamily: 'Lora' },
-    'f-2': { fontFamily: 'Lora-Italic' },
-    'f-3': { fontFamily: 'DM' },
-    'f-4': { fontFamily: 'DM-Italic' },
-    'f-5': { fontFamily: 'Lora' },
-    'f-6': { fontFamily: 'Lora' },
+    'f-1': { fontFamily: pFont },
+    'f-2': { fontFamily: pFont },
+    'f-3': { fontFamily: pFont },
+    'f-4': { fontFamily: pFont },
+    'f-5': { fontFamily: pFont },
+    'f-6': { fontFamily: pFont },
     'fw-200': { fontWeight: '200' as const },
     'fw-300': { fontWeight: '300' as const },
     'fw-400': { fontWeight: '400' as const },
@@ -235,12 +240,12 @@ export const allThemes = {
   },
   theme4: {
     themeName:'theme4',
-    'f-1': { fontFamily: 'Lora' },
-    'f-2': { fontFamily: 'Lora-Italic' },
-    'f-3': { fontFamily: 'DM' },
-    'f-4': { fontFamily: 'DM-Italic' },
-    'f-5': { fontFamily: 'Lora' },
-    'f-6': { fontFamily: 'Lora' },
+    'f-1': { fontFamily: pFont },
+    'f-2': { fontFamily: pFont },
+    'f-3': { fontFamily: pFont },
+    'f-4': { fontFamily: pFont },
+    'f-5': { fontFamily: pFont },
+    'f-6': { fontFamily: pFont },
     'fw-200': { fontWeight: '200' as const },
     'fw-300': { fontWeight: '300' as const },
     'fw-400': { fontWeight: '400' as const },
@@ -313,8 +318,11 @@ export const allThemes = {
 
 ## Key Takeaways
 
-- **place holders**: place holders should stay for the initial app setup, they will be turned into real values upon stylingSetup. 
+- **Placeholders**: Placeholders (p, p2, p3, pFont) stay until styling agents run
+  - `pFont` → Replaced by fontsAgent with actual font family names
+  - `p`, `p2`, `p3` → Replaced by stylingSetupAgent with real values (colors, sizes, shadows)
 - **Theme quantity**: Can be 2, 3, 4, 5, or any number
 - **Theme names**: Fully customizable (lightClassic/darkNormal, ocean/sunset, modern/retro, etc.)
-- **Values**: Colors, fonts, sizes, border radii are all flexible
+- **Font families**: Populated by fontsAgent based on theme descriptions from 1overview.md
+- **Values**: Colors, sizes, border radii are flexible and filled by stylingSetupAgent
 - **Status bar style**: 'light' or 'dark' to control system status bar appearance

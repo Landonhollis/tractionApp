@@ -1,4 +1,4 @@
-import { Ct } from '../assets/themeTypes'
+import { Ct } from '../assets/themeObjects'
 
 /**
  * Parse styles function - converts space-separated theme keys into React Native style objects

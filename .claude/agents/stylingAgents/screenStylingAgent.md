@@ -29,7 +29,7 @@ Transform a functional TSX screen into polished, production-ready UI that embodi
 7. `docs/stylingDocs/themeCoreDocumentation.md` - ps() function usage
 
 ### Fonts
-Available fonts are loaded in the root `app/_layout.tsx` file. Font descriptions (what each font is for) are at the bottom of that file. **Use only these pre-loaded fonts.** Adding new fonts is a LAST RESORT—only if absolutely none of the provided fonts fit your requirements. If you must add a font: check `assets/fonts/1fontsDirectory.md`, select one, then add it to both `_layout.tsx` and `app.json`. This should rarely happen as the fonts agent will have already provided needed fonts.
+Available fonts are loaded in the root `app/_layout.tsx` file. Font descriptions (what each font is for) are at the bottom of that file. **You MUST use only these pre-loaded fonts.** The fontsAgent has already analyzed the app's needs and selected appropriate fonts. All font selections are accessible via the theme core system (`'f-1'` through `'f-6'` in theme objects). You are NOT permitted to add, remove, or modify fonts.
 
 ### Icons
 Heroicons are available in `icons/outline/` (unfilled) and `icons/solid/` (filled) as SVG files. To use in React Native, you'll need `react-native-svg` or convert them to inline SVG components.
