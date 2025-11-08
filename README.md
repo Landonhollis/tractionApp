@@ -28,6 +28,8 @@
    NEX
       - each screen coding agent stays in its own lane, it does not conjoin. that is the job of the nexAgent. 
       - the nex Agent takes all seperated screens, and conjoins them into a propper app by sorting them into the right files for navigation, making sure imports are accurate, checking that everything connects to geather propperly, and the the app flows as it should. 
+   DATA AGREGATE
+      - The data agregate takes all the data that has been entered into the 2data.md prd from ths screen coding agents, makes sure that everything connects propperly and there are no conflicts in logic, makes sure there are propper rls policies, defualts, FK's and PK's, then migrates all data to supabase via the supabase mcp. 
    ## styling
    SETUP
       fontsAgent
