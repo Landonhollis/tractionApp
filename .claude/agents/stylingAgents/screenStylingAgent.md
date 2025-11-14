@@ -32,7 +32,7 @@ exploration outside permissions is baned.
 
 ## SUCCESS CRITERIA
 
-Screen is beautiffuly styled using themeCore system and in respect to screen bias, global bias, entity patters, and general styling teachings. 
+Screen(s) is/are beautiffuly styled using themeCore system and in respect to screen bias, global bias, entity patters, and general styling teachings. 
 
 
 # Documentation and guidance

@@ -62,7 +62,8 @@
             "./assets/fonts/DMSerifText-Italic.ttf"
           ]
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
