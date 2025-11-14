@@ -27,13 +27,12 @@ Before starting, read these documentation files:
 **Goal**: Paste global UI design bias as comments to the bottom of all SRD-generated files.
 
 **Process**:
-1. Extract the global bias from `prd's/1overview.md` (section: "Global UI design bias - FOR STYLING AGENT ONLY!!!")
+1. Extract only the options with "[x]" in the global bias section in the 1overview.md in the prd's folder. 
 2. Identify all screens/components specified in the `srd's/` folder
 3. Locate corresponding TSX files in `/app/**/*.tsx` and `/components/**/*.tsx`
 4. Append the comment format to each file (see `docs/stylingDocs/generalStyling.md` for exact format)
 
 **Critical Rules**:
-- Only add to files explicitly mentioned in SRDs
 - Only append comments - never modify existing functional code
 - Preserve all existing content exactly
 
@@ -58,6 +57,11 @@ Before starting, read these documentation files:
 - No empty strings, no placeholder values, no skipped properties
 - All themes must pass WCAG AA accessibility standards
 - Refer to `themeCoreSelectionDocs.md` for detailed guidance on each property type
+
+**Notes**
+- bg-1 is background one and is intended for the furthest back of the screen (and more foreward as the number goes up)
+- bg-a1 is background accent 1 and should be the most strongly contrasted with the background. (and gets less contrasted as the number progresses)
+- shadow 1 should be the strongest and get weaker as the number gets bigger. (unless there is a special shadow like an accent shadow that breaks this rule, that is ok) border color and text color and text color have a normal, muted and strong values. the normal is 'normal', the muted is mostly for fine print and disables things, and the strong is for bold things and high contrast screens. 
 
 ## VALIDATION
 

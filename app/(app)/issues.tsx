@@ -1049,12 +1049,16 @@ function AddIssueModal({
 }
 
 /*
-UI/UX BIAS FOR FUTURE DESIGN PASS
-Clean, scannable, action-oriented.
-Issues should feel manageable, not overwhelming - use whitespace and clear grouping.
-Visual hierarchy through separator weights (thin vs thick) is key.
-Long-press interaction should feel discoverable - consider subtle visual hint.
-Add/Delete actions should be clear but not dominate the interface.
-Department headers in departmental section create clear mental model.
-This is a working tool, not a presentation - prioritize speed and clarity.
-*/
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

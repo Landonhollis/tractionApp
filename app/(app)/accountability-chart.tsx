@@ -804,6 +804,17 @@ const styles = StyleSheet.create({
   },
 });
 
-/* UI/UX BIAS FOR FUTURE DESIGN PASS
-Minimalistic and professional. Rounded boxes for nodes with clean typography. Subtle texture on canvas background for spatial orientation without distraction. Green accent for add buttons suggests growth and addition. Popups should feel lightweight and non-intrusive. Overall aesthetic should support focus on organizational structure rather than decorative elements.
-*/
+/*
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

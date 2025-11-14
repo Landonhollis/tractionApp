@@ -480,6 +480,16 @@ function IndividualProcessesCard({ processes }: IndividualProcessesCardProps) {
 }
 
 /*
-UI/UX BIAS FOR FUTURE DESIGN PASS
-Clean, data-focused dashboard with minimal decoration. Cards should feel organized and scannable. Floating card aesthetic suggests modular information blocks. Color coding (green/red for metrics, differentiated levels) serves functional purpose of quick status assessment. Typography hierarchy (larger titles, smaller descriptions) aids scanning. Thin divider lines maintain separation without visual weight. Overall: professional, efficient, information-dense but not overwhelming.
-*/
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

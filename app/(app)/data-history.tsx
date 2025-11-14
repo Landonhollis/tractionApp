@@ -261,6 +261,17 @@ function MetricGraph({
   );
 }
 
-/* UI/UX BIAS FOR FUTURE DESIGN PASS
-Minimalistic and data-focused. Simple line graphs without complex decorative elements. Accent color for current_status line draws attention to actual performance. Red/green dot color coding provides instant status feedback. Subtle min/max lines serve as reference without competing for attention. Button styling clearly indicates selected timeframe state. Overall aesthetic: clean, analytical, focused on trend identification rather than visual flair.
-*/
+/*
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

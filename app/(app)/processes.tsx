@@ -618,13 +618,16 @@ function EditProcessModal({
 }
 
 /*
-UI/UX BIAS FOR FUTURE DESIGN PASS
-Formal, presentational, professional.
-Processes should feel like important documentation - use typography to convey authority.
-Each process section should feel like a distinct document or card.
-Green "Add Process" button should be inviting but not dominate the interface.
-Long-press popup should feel contextual and lightweight.
-EditProcess modal should feel focused and distraction-free.
-Consider subtle visual separation between processes (borders, shadows, spacing).
-This is professional reference material that should inspire confidence.
-*/
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

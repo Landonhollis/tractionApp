@@ -1,3 +1,4 @@
+// screen coding agent was in progress when ai rate limit was reached
 import React, { useState, useEffect } from 'react'
 import {
   View,
@@ -54,7 +55,7 @@ type QuickEntryState = {
 }
 
 export default function ScoreCardsScreen() {
-  const { session } = useAccount()
+  const { session, ps } = useAccount()
   const [companyMetrics, setCompanyMetrics] = useState<Metric[]>([])
   const [departmentalMetrics, setDepartmentalMetrics] = useState<Metric[]>([])
   const [individualMetrics, setIndividualMetrics] = useState<Metric[]>([])
@@ -261,7 +262,7 @@ export default function ScoreCardsScreen() {
   // Render metric square
   const renderMetric = (metric: Metric) => {
     const statusColor = getStatusColor(metric.current_status, metric.min, metric.max)
-    const bgColor = statusColor === 'green' ? '#4ade80' : '#f87171'
+    const bgColor = statusColor === 'green' ? 'rgb(34, 197, 94)' : 'rgb(239, 68, 68)'
 
     return (
       <TouchableOpacity
@@ -271,20 +272,20 @@ export default function ScoreCardsScreen() {
         style={{
           aspectRatio: 1,
           backgroundColor: bgColor,
-          borderRadius: 8,
+          ...ps('br-3 shadow-2'),
           padding: 12,
           justifyContent: 'center',
           alignItems: 'center',
         }}
-        activeOpacity={0.7}
+        activeOpacity={0.8}
       >
-        <Text style={{ fontSize: 14, fontWeight: '600', textAlign: 'center', color: '#fff' }}>
+        <Text style={{ ...ps('text-sm fw-600 text-inverse f-1'), textAlign: 'center' }}>
           {metric.description}
         </Text>
-        <Text style={{ fontSize: 18, fontWeight: 'bold', marginTop: 8, color: '#fff' }}>
+        <Text style={{ ...ps('text-2xl fw-700 text-inverse f-3'), marginTop: 8 }}>
           {metric.current_status}
         </Text>
-        <Text style={{ fontSize: 10, marginTop: 4, color: '#fff' }}>
+        <Text style={{ ...ps('text-xs fw-400 text-inverse f-5'), marginTop: 4 }}>
           Range: {metric.min} - {metric.max}
         </Text>
       </TouchableOpacity>
@@ -818,17 +819,16 @@ function IndividualMetricsComponent({
 }
 
 /*
-<!-- UI/UX BIAS FOR FUTURE DESIGN PASS
-Clean, structured, data-driven with immediate visual feedback.
-The three-layer background color system is critical - creates clear visual grouping (same as Rocks).
-Square metrics are distinctive and scannable - matches Rocks screen pattern.
-Green/red status indicators are the hero - must be immediately visible and unmistakable.
-Grid layout should feel organized and allow quick scanning for red (problem) metrics.
-Company metrics stand out with one less layer - appropriate given their importance.
-Department and user name headers create clear organization.
-This is daily tracking interface - prioritize speed of status updates above all.
-Edit popup should optimize for quick current_status changes.
-Consider larger touch targets for frequently-updated values.
-Status colors should be accessible (not just red/green for colorblind users).
--->
-*/
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

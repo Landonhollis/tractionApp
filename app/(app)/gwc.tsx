@@ -234,13 +234,16 @@ export default function GWCScreen() {
 }
 
 /*
-<!-- UI/UX BIAS FOR FUTURE DESIGN PASS
-Presentational, editorial, magazine-like feel.
-Think modern digital publication rather than app screen.
-Typography is the hero - use hierarchy, weight, spacing to create visual interest.
-Generous whitespace, confident layout choices.
-Should feel like quality educational content, not a dense reference doc.
-Consider pull quotes, visual separators, subtle accents to break up text.
-This is about making learning feel premium and engaging.
--->
-*/
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

@@ -1,7 +1,7 @@
 # this is the styling for menus
 
 ## sliding
-menus shoudl slide out via drag out motion or a menu icon click. when the menu slides out there should be a smooth transition, it should not be a hard transition. to slide in, the user should click anywhere that is not the menu, or slide the menu in with their finger. 
+menus should slide out via drag out motion or a menu icon click. when the menu slides out there should be a smooth transition, it should not be a hard transition. to slide in, the user should click anywhere that is not the menu, or slide the menu in with their finger. 
 
 ## hiarchy
 

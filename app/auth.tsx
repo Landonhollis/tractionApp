@@ -14,7 +14,7 @@ interface FormErrors {
 }
 
 export default function AuthScreen() {
-  const { isAuthenticated } = useAccount()
+  const { isAuthenticated, ps } = useAccount()
   const [mode, setMode] = useState<AuthMode>('signin')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -136,7 +136,8 @@ export default function AuthScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      className="flex-1 bg-gray-50 dark:bg-gray-900"
+      style={ps('bg-1')}
+      className="flex-1"
     >
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
@@ -144,31 +145,33 @@ export default function AuthScreen() {
       >
         <View className="flex-1 items-center justify-center px-6 py-12">
           {/* Card Container */}
-          <View className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+          <View style={ps('bg-3 br-3 shadow-2')} className="w-full max-w-md p-8">
             {/* App Branding */}
             <View className="items-center mb-8">
-              <View className="w-16 h-16 bg-blue-500 rounded-2xl items-center justify-center mb-4">
-                <Text className="text-white text-3xl font-bold">T</Text>
+              <View style={ps('bg-a1 br-3')} className="w-20 h-20 items-center justify-center mb-4">
+                <Text style={ps('text-inverse f-3 fw-700')} className="text-4xl">T</Text>
               </View>
-              <Text className="text-2xl font-bold text-gray-900 dark:text-white">Traction</Text>
-              <Text className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <Text style={ps('text-strong f-3 fw-700 text-2xl')}>Traction</Text>
+              <Text style={ps('text-muted f-5 fw-400 text-sm')} className="mt-2">
                 {mode === 'signin' ? 'Welcome back' : 'Create your account'}
               </Text>
             </View>
 
             {/* Form */}
-            <View className="space-y-4">
+            <View className="gap-4">
               {/* Email Input */}
               <View>
-                <Text className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <Text style={ps('text-normal f-1 fw-500 text-sm')} className="mb-2">
                   Email
                 </Text>
                 <TextInput
-                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border ${
-                    errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-                  } rounded-lg text-gray-900 dark:text-white`}
+                  style={[
+                    ps(`bg-2 br-2 text-normal f-1 fw-400 text-md ${errors.email ? 'bc-accent bw-2' : 'bc-muted bw-1'}`),
+                    { paddingHorizontal: 16, paddingVertical: 12 }
+                  ]}
+                  className="w-full"
                   placeholder="you@example.com"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="rgb(132, 132, 132)"
                   value={email}
                   onChangeText={(text) => {
                     setEmail(text)
@@ -180,21 +183,23 @@ export default function AuthScreen() {
                   editable={!loading}
                 />
                 {errors.email && (
-                  <Text className="text-red-500 text-xs mt-1">{errors.email}</Text>
+                  <Text style={ps('text-a1 f-5 fw-400 text-xs')} className="mt-1">{errors.email}</Text>
                 )}
               </View>
 
               {/* Password Input */}
               <View>
-                <Text className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <Text style={ps('text-normal f-1 fw-500 text-sm')} className="mb-2">
                   Password
                 </Text>
                 <TextInput
-                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border ${
-                    errors.password ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-                  } rounded-lg text-gray-900 dark:text-white`}
+                  style={[
+                    ps(`bg-2 br-2 text-normal f-1 fw-400 text-md ${errors.password ? 'bc-accent bw-2' : 'bc-muted bw-1'}`),
+                    { paddingHorizontal: 16, paddingVertical: 12 }
+                  ]}
+                  className="w-full"
                   placeholder="••••••••"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="rgb(132, 132, 132)"
                   value={password}
                   onChangeText={(text) => {
                     setPassword(text)
@@ -206,22 +211,24 @@ export default function AuthScreen() {
                   editable={!loading}
                 />
                 {errors.password && (
-                  <Text className="text-red-500 text-xs mt-1">{errors.password}</Text>
+                  <Text style={ps('text-a1 f-5 fw-400 text-xs')} className="mt-1">{errors.password}</Text>
                 )}
               </View>
 
               {/* Confirm Password Input (Sign Up only) */}
               {mode === 'signup' && (
                 <View>
-                  <Text className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <Text style={ps('text-normal f-1 fw-500 text-sm')} className="mb-2">
                     Confirm Password
                   </Text>
                   <TextInput
-                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border ${
-                      errors.confirmPassword ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-                    } rounded-lg text-gray-900 dark:text-white`}
+                    style={[
+                      ps(`bg-2 br-2 text-normal f-1 fw-400 text-md ${errors.confirmPassword ? 'bc-accent bw-2' : 'bc-muted bw-1'}`),
+                      { paddingHorizontal: 16, paddingVertical: 12 }
+                    ]}
+                    className="w-full"
                     placeholder="••••••••"
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="rgb(132, 132, 132)"
                     value={confirmPassword}
                     onChangeText={(text) => {
                       setConfirmPassword(text)
@@ -233,30 +240,33 @@ export default function AuthScreen() {
                     editable={!loading}
                   />
                   {errors.confirmPassword && (
-                    <Text className="text-red-500 text-xs mt-1">{errors.confirmPassword}</Text>
+                    <Text style={ps('text-a1 f-5 fw-400 text-xs')} className="mt-1">{errors.confirmPassword}</Text>
                   )}
                 </View>
               )}
 
               {/* General Error */}
               {errors.general && (
-                <View className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
-                  <Text className="text-red-600 dark:text-red-400 text-sm">{errors.general}</Text>
+                <View style={ps('bg-2 bc-accent bw-2 br-2')} className="p-3">
+                  <Text style={ps('text-a1 f-1 fw-400 text-sm')}>{errors.general}</Text>
                 </View>
               )}
 
               {/* Sign In / Sign Up Button */}
               <TouchableOpacity
-                className={`w-full py-4 rounded-lg items-center justify-center ${
-                  loading ? 'bg-blue-400' : 'bg-blue-500'
-                }`}
+                style={[
+                  ps('bg-a1 br-2 shadow-1'),
+                  { paddingVertical: 16, opacity: loading ? 0.7 : 1, minHeight: 56 }
+                ]}
+                className="w-full items-center justify-center"
                 onPress={mode === 'signin' ? handleSignIn : handleSignUp}
                 disabled={loading}
+                activeOpacity={0.8}
               >
                 {loading ? (
-                  <ActivityIndicator color="white" />
+                  <ActivityIndicator color="rgb(23, 23, 23)" />
                 ) : (
-                  <Text className="text-white font-semibold text-base">
+                  <Text style={ps('text-inverse f-1 fw-600 text-md')}>
                     {mode === 'signin' ? 'Sign In' : 'Create Account'}
                   </Text>
                 )}
@@ -264,29 +274,38 @@ export default function AuthScreen() {
 
               {/* Divider */}
               <View className="flex-row items-center my-2">
-                <View className="flex-1 h-px bg-gray-300 dark:bg-gray-600" />
-                <Text className="mx-4 text-sm text-gray-500 dark:text-gray-400">or</Text>
-                <View className="flex-1 h-px bg-gray-300 dark:bg-gray-600" />
+                <View style={ps('bg-5')} className="flex-1 h-px" />
+                <Text style={ps('text-muted f-5 fw-400 text-sm')} className="mx-4">or</Text>
+                <View style={ps('bg-5')} className="flex-1 h-px" />
               </View>
 
               {/* Google Sign In Button */}
               <TouchableOpacity
-                className="w-full py-4 border border-gray-300 dark:border-gray-600 rounded-lg items-center justify-center"
+                style={[
+                  ps('bg-2 bc-normal bw-1 br-2'),
+                  { paddingVertical: 16, opacity: loading ? 0.5 : 1, minHeight: 56 }
+                ]}
+                className="w-full items-center justify-center"
                 onPress={handleGoogleSignIn}
                 disabled={loading}
+                activeOpacity={0.7}
               >
-                <Text className="text-gray-700 dark:text-gray-300 font-medium text-base">
+                <Text style={ps('text-normal f-1 fw-500 text-md')}>
                   Sign in with Google
                 </Text>
               </TouchableOpacity>
 
               {/* Mode Toggle */}
               <View className="flex-row justify-center items-center mt-4">
-                <Text className="text-gray-600 dark:text-gray-400 text-sm">
+                <Text style={ps('text-muted f-5 fw-400 text-sm')}>
                   {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}
                 </Text>
-                <TouchableOpacity onPress={toggleMode} disabled={loading}>
-                  <Text className="text-blue-500 font-semibold text-sm">
+                <TouchableOpacity
+                  onPress={toggleMode}
+                  disabled={loading}
+                  activeOpacity={0.7}
+                >
+                  <Text style={ps('text-a1 f-1 fw-600 text-sm')}>
                     {mode === 'signin' ? 'Sign Up' : 'Sign In'}
                   </Text>
                 </TouchableOpacity>
@@ -300,20 +319,16 @@ export default function AuthScreen() {
 }
 
 /*
-UI/UX BIAS FOR FUTURE DESIGN PASS
-Clean, minimal, trustworthy. This is the first impression of the app.
-Focus on reducing cognitive load - clear CTAs, obvious mode switching.
-Accent color on primary buttons creates clear visual hierarchy.
-Icon tinting ensures brand consistency across themes.
-Consider subtle animations on mode toggle for polish.
-
-SCREEN FUNCTIONALITY:
-- Authentication entry point for the Traction app
-- Supports email/password sign in and sign up
-- Includes Google OAuth sign in option
-- Real-time form validation with inline error messages
-- Responsive design that works on mobile, tablet, and web
-- Theme-aware (light/dark mode support)
-- Loading states during authentication
-- Automatic redirect when user is authenticated via AccountProvider
-*/
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

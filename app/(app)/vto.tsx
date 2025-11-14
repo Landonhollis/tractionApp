@@ -1,3 +1,4 @@
+// screen coding agent was in progress when ai rate limit was reached
 import React, { useState, useEffect, useRef } from 'react'
 import {
   View,
@@ -27,7 +28,7 @@ type EditingSection = {
 } | null
 
 export default function VtoScreen() {
-  const { session } = useAccount()
+  const { session, ps } = useAccount()
   const [vtoData, setVtoData] = useState<VtoRecord | null>(null)
   const [loading, setLoading] = useState(true)
   const [editingSection, setEditingSection] = useState<EditingSection>(null)
@@ -98,10 +99,10 @@ export default function VtoScreen() {
   // Loading state
   if (loading) {
     return (
-      <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size="large" color="#000" />
-          <Text style={{ marginTop: 16, fontSize: 16 }}>Loading VTO...</Text>
+      <View style={ps('bg-1 flex-1')}>
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator size="large" color={ps('text-normal').color} />
+          <Text style={ps('f-1 text-md text-normal fw-400')} className="mt-4">Loading VTO...</Text>
         </View>
       </View>
     )
@@ -110,21 +111,18 @@ export default function VtoScreen() {
   // Empty state (no VTO and failed to create)
   if (!vtoData) {
     return (
-      <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-          <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 16 }}>
+      <View style={ps('bg-1 flex-1')}>
+        <View className="flex-1 justify-center items-center px-5">
+          <Text style={ps('f-3 text-lg text-strong fw-600')} className="text-center mb-4">
             Unable to load VTO
           </Text>
           <TouchableOpacity
             onPress={loadVto}
-            style={{
-              backgroundColor: '#000',
-              paddingHorizontal: 24,
-              paddingVertical: 12,
-              borderRadius: 8,
-            }}
+            style={ps('bg-a1 br-2')}
+            className="px-6 py-3"
+            activeOpacity={0.8}
           >
-            <Text style={{ color: '#fff', fontSize: 16 }}>Retry</Text>
+            <Text style={ps('f-1 text-md text-inverse fw-600')}>Retry</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -134,22 +132,26 @@ export default function VtoScreen() {
   const sectionColumns = getVtoSectionColumns()
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#fff' }}>
-
+    <View style={ps('bg-1 flex-1')}>
       <ScrollView
-        style={{ flex: 1 }}
-        contentContainerStyle={{ padding: 20, paddingTop: 80 }}
+        style={ps('flex-1')}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 80, paddingBottom: 40 }}
+        showsVerticalScrollIndicator={false}
       >
         {/* Page title */}
         <Text
-          style={{
-            fontSize: 32,
-            fontWeight: 'bold',
-            marginBottom: 32,
-            textAlign: 'center',
-          }}
+          style={ps('f-3 text-2xl text-strong fw-700')}
+          className="mb-6 text-center"
         >
           Vision/Traction Organizer
+        </Text>
+
+        {/* Instructional text */}
+        <Text
+          style={ps('f-1 text-sm text-muted fw-400')}
+          className="mb-8 text-center px-4"
+        >
+          Long-press any section to edit
         </Text>
 
         {/* VTO Sections */}
@@ -160,6 +162,7 @@ export default function VtoScreen() {
             title={formatSectionTitle(columnName)}
             description={vtoData[columnName as keyof VtoRecord] as string}
             onLongPress={handleLongPress}
+            ps={ps}
           />
         ))}
       </ScrollView>
@@ -173,6 +176,7 @@ export default function VtoScreen() {
           onSave={handleSave}
           onCancel={handleCancel}
           saving={saving}
+          ps={ps}
         />
       )}
     </View>
@@ -185,9 +189,10 @@ type VtoSectionProps = {
   title: string
   description: string | null
   onLongPress: (columnName: string, currentValue: string | null) => void
+  ps: (styleString: string) => object
 }
 
-function VtoSection({ columnName, title, description, onLongPress }: VtoSectionProps) {
+function VtoSection({ columnName, title, description, onLongPress, ps }: VtoSectionProps) {
   const longPressTimer = useRef<NodeJS.Timeout | null>(null)
   const [isPressed, setIsPressed] = useState(false)
 
@@ -211,35 +216,25 @@ function VtoSection({ columnName, title, description, onLongPress }: VtoSectionP
     <TouchableOpacity
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
-      activeOpacity={0.7}
+      activeOpacity={0.95}
       style={{
-        marginBottom: 32,
-        padding: 16,
-        backgroundColor: isPressed ? '#f0f0f0' : '#fff',
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: '#ddd',
+        ...ps(isPressed ? 'bg-4 bw-2 bc-accent br-2 shadow-2' : 'bg-3 bw-1 bc-normal br-2 shadow-1'),
+        marginBottom: 20,
+        padding: 20,
       }}
     >
       {/* Section Title */}
       <Text
-        style={{
-          fontSize: 24,
-          fontWeight: 'bold',
-          marginBottom: 12,
-          color: '#000',
-        }}
+        style={ps('f-3 text-lg text-strong fw-600')}
+        className="mb-3"
       >
         {title}
       </Text>
 
       {/* Section Description */}
       <Text
-        style={{
-          fontSize: 16,
-          lineHeight: 24,
-          color: description ? '#333' : '#999',
-        }}
+        style={ps(description ? 'f-1 text-md text-normal fw-400' : 'f-5 text-sm text-muted fw-400')}
+        numberOfLines={description ? undefined : 1}
       >
         {description || 'Long-press to add content...'}
       </Text>
@@ -255,6 +250,7 @@ type EditVtoSectionModalProps = {
   onSave: () => void
   onCancel: () => void
   saving: boolean
+  ps: (styleString: string) => object
 }
 
 function EditVtoSectionModal({
@@ -264,94 +260,96 @@ function EditVtoSectionModal({
   onSave,
   onCancel,
   saving,
+  ps,
 }: EditVtoSectionModalProps) {
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onCancel}>
       {/* Dimmed backdrop */}
       <Pressable
         onPress={onCancel}
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.6)',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 20,
-        }}
+        className="flex-1 justify-center items-center px-5"
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.65)' }}
       >
         {/* Modal content - prevent backdrop close when tapping inside */}
         <Pressable
           onPress={(e) => e.stopPropagation()}
           style={{
-            backgroundColor: '#fff',
-            borderRadius: 12,
+            ...ps('bg-2 br-3 shadow-3'),
             padding: 24,
             width: '100%',
             maxWidth: 500,
-            maxHeight: '80%',
+            maxHeight: '85%',
           }}
         >
           {/* Section Title (read-only) */}
           <Text
-            style={{
-              fontSize: 24,
-              fontWeight: 'bold',
-              marginBottom: 16,
-              color: '#000',
-            }}
+            style={ps('f-3 text-xl text-strong fw-700')}
+            className="mb-2"
           >
             {title}
           </Text>
 
+          {/* Helper text */}
+          <Text
+            style={ps('f-1 text-sm text-muted fw-400')}
+            className="mb-5"
+          >
+            Edit the content for this section
+          </Text>
+
           {/* Editable text area */}
-          <ScrollView style={{ maxHeight: 300, marginBottom: 20 }}>
+          <ScrollView className="mb-6" style={{ maxHeight: 350 }}>
             <TextInput
               value={value}
               onChangeText={onValueChange}
               multiline
               placeholder="Enter section content..."
+              placeholderTextColor={ps('text-muted').color}
               style={{
-                borderWidth: 1,
-                borderColor: '#ddd',
-                borderRadius: 8,
-                padding: 12,
-                fontSize: 16,
-                minHeight: 150,
+                ...ps('bg-1 bw-1 bc-normal br-2 f-1 text-md text-normal fw-400'),
+                padding: 16,
+                minHeight: 180,
                 textAlignVertical: 'top',
-                backgroundColor: '#fff',
               }}
               editable={!saving}
+              autoFocus
             />
           </ScrollView>
 
           {/* Buttons */}
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 12 }}>
+          <View className="flex-row justify-end" style={{ gap: 12 }}>
             <TouchableOpacity
               onPress={onCancel}
               disabled={saving}
               style={{
+                ...ps(saving ? 'bg-5 br-2' : 'bg-4 br-2'),
                 paddingHorizontal: 20,
                 paddingVertical: 12,
-                borderRadius: 8,
-                backgroundColor: '#f0f0f0',
+                minWidth: 90,
               }}
+              activeOpacity={0.7}
             >
-              <Text style={{ fontSize: 16, color: '#000' }}>Cancel</Text>
+              <Text style={ps('f-1 text-md text-normal fw-500')} className="text-center">
+                Cancel
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               onPress={onSave}
               disabled={saving}
               style={{
+                ...ps(saving ? 'bg-5 br-2' : 'bg-a1 br-2'),
                 paddingHorizontal: 20,
                 paddingVertical: 12,
-                borderRadius: 8,
-                backgroundColor: saving ? '#ccc' : '#007AFF',
+                minWidth: 90,
                 flexDirection: 'row',
                 alignItems: 'center',
+                justifyContent: 'center',
               }}
+              activeOpacity={0.8}
             >
-              {saving && <ActivityIndicator size="small" color="#fff" style={{ marginRight: 8 }} />}
-              <Text style={{ fontSize: 16, color: '#fff', fontWeight: '600' }}>
+              {saving && <ActivityIndicator size="small" color={ps('text-inverse').color} style={{ marginRight: 8 }} />}
+              <Text style={ps('f-1 text-md text-inverse fw-600')} className="text-center">
                 {saving ? 'Saving...' : 'Save'}
               </Text>
             </TouchableOpacity>
@@ -363,15 +361,16 @@ function EditVtoSectionModal({
 }
 
 /*
-UI/UX BIAS FOR FUTURE DESIGN PASS
-Formal, professional, presentation-quality.
-This is THE strategic document - it should feel authoritative and important.
-Large, clear section titles create strong hierarchy.
-Generous whitespace between sections - let content breathe.
-Typography is critical - titles should command attention, body should be highly readable.
-Consider subtle visual separators between sections (rules, spacing, background tints).
-EditVtoSection modal should feel focused and distraction-free.
-Dimmed background reinforces modal focus.
-Save button in accent color creates clear primary action.
-This document represents the company's vision - design should inspire confidence.
-*/
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

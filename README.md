@@ -38,7 +38,6 @@
          - Populates font families ('f-1' through 'f-6') in ALL theme objects in themeObjects.tsx
          - Loads selected fonts into _layout.tsx and app.json
          - Documents font choices at bottom of _layout.tsx for other styling agents
-
       stylingSetupAgent
          1. Adds global UI design bias comments to bottom of all TSX files created by coding agents
             - Global bias is chosen by human in 1overview.md (presentational/business/shop/custom)
@@ -46,19 +45,19 @@
          2. Fills all theme object values in themeObjects.tsx (colors, borders, shadows, etc.)
             - Does NOT modify fonts (already populated by fontsAgent)
             - Uses theme descriptions from 1overview.md and themeCoreSelectionDocs
-
    SCREEN STYLING
-      - Run one instance of screenStylingAgent per TSX file created by coding agents
-      - Agent workflow:
-         1. Reads the TSX file and global bias comment at bottom
-         2. Identifies applicable screen bias patterns from screenBiasesDirectory.md (0-3 per screen)
-            - Screen biases are UX optimization patterns (Data Dashboard, Forms/Intake, etc.)
-            - Different from global bias - these are per-screen optimizations
-            - Human can specify custom screen bias in SRD → coding agent adds to TSX
-         3. Identifies UI entities present (buttons, cards, lists, etc.) from entitiesDirectory.md
-         4. Reads specific documentation for identified biases and entities only
-         5. Applies styling using theme core system (ps function) without changing functionality
-      - Resources available: screen biases, global bias, entities, generalStyling.md, theme core 
+      screen styling agent
+         - Run one instance of screenStylingAgent per TSX file created by coding agents
+         - Agent workflow:
+            1. Reads the TSX file and global bias comment at bottom
+            2. Identifies applicable screen bias patterns from screenBiasesDirectory.md (0-3 per screen)
+               - Screen biases are UX optimization patterns (Data Dashboard, Forms/Intake, etc.)
+               - Different from global bias - these are per-screen optimizations
+               - Human can specify custom screen bias in SRD → coding agent adds to TSX
+            3. Identifies UI entities present (buttons, cards, lists, etc.) from entitiesDirectory.md
+            4. Reads specific documentation for identified biases and entities only
+            5. Applies styling using theme core system (ps function) without changing functionality
+         - Resources available: screen biases, global bias, entities, generalStyling.md, theme core 
 
 
 ## NOTES BEFORE AGENTS RUN

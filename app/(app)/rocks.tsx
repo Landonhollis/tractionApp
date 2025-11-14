@@ -540,13 +540,16 @@ function RockGrid({ rocks, onLongPress }: RockGridProps) {
 }
 
 /*
-UI/UX BIAS FOR FUTURE DESIGN PASS
-Clean, structured, visually hierarchical.
-The three-layer background color system is critical - creates clear visual grouping.
-Square rocks are distinctive - this is intentional, makes them feel like building blocks.
-Grid layout should feel organized and scannable.
-Company rocks stand out with one less layer - appropriate given their importance.
-Department and user name headers create clear organization.
-This is goal-tracking interface - prioritize clarity and quick scanning over decoration.
-Consider subtle shadows or elevation cues to reinforce layer hierarchy.
-*/
+ * ============================================
+ * GLOBAL UI DESIGN BIAS - FOR STYLING AGENT
+ * ============================================
+ *
+ * [ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace.
+ * [x]: business management - function first, graphs are less visual, more numeric. display is more plain, but more clear.
+ * [ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate.
+ * [x]: custom: emphasis on well defined sections, very distinctively separated. this is because of the amount of business information that needs to be easily scrolled through.
+ *
+ * This information guides future styling passes.
+ * Do not modify the functional code above based on this bias yet.
+ * ============================================
+ */

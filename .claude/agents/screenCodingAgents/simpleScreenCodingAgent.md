@@ -70,6 +70,7 @@ You should assume that all resources that you have been given access to below in
   - do not specify any font. you should leave all text as the default font. 
   - SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout.
   - you should create enums in this front end code, they are not to be left for the database. 
+  - when creating functions that alter states that exist in the app and in supabase, like theme, the function should update in the app imidiatley and in supabase. 
 
 
 # Documentation
