@@ -5,25 +5,6 @@
 the theme core system gives a very easy way to have highly customizable and user changeable styling all across the app. it does this mainly via the 'ps' function, which stands for parse styles. in the style prop in the tsx, the coder should input ps(styles here) in a native wind format. the ps function uses the all themes object to map these native wind type styles to the proper real styles that will work in the style prop. when the user uses the changeTheme function, it should update the theme in the backend/database and also update the theme immediately in the app so that the app does not have to listen live to the backend changes. for simplicity, all screens and components, even before the user signs in, should use these styles and if themeName is 'null', like it will be before the user signs in, then the system should default to the first theme (might not be named theme1). these themes will need to be loaded a bit differently in the _layout file for the status bar as shown below.
   - note: the keys for every key value pair is the same in each theme object.
 
-## IMPORTANT TERMINOLOGY
-
-**Global UI Design Bias** vs **Screen Bias Patterns** - These are different concepts:
-
-- **Global UI Design Bias**: The overall app-wide design philosophy chosen by the human developer
-  - Located in `prd's/1overview.md` under "Global UI design bias"
-  - Options: presentational, business management, shop, or custom
-  - Human chooses ONE option and checks the box in 1overview.md
-  - This bias is pasted as a comment at the bottom of all TSX files by stylingSetupAgent
-  - Guides the overall feel and approach of the entire app
-
-- **Screen Bias Patterns**: Specific UX optimization patterns for individual screen types
-  - Located in `docs/stylingDocs/screenBiases/screenBiasDirectory.md`
-  - Examples: Data Dashboard, Checkout/Payment, Product Detail, Forms/Intake, etc.
-  - screenStylingAgent chooses applicable patterns for each screen (can choose 0-3 per screen)
-  - Humans can specify custom screen bias in SRD → coding agent adds to TSX → screenStylingAgent reads it
-  - Guides what each individual screen optimizes for (clarity, conversion, scanning, etc.)
-
-
 ## WHEN TO USE
   - the theme core should be used everywhere it possibly can be used. 
   - where it cant be used, tailwind should be used. 

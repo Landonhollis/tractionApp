@@ -17,14 +17,13 @@ export type ProcessInput = {
 }
 
 /**
- * Fetches all processes for the user (ordered by created_at DESC)
+ * Fetches all processes (ordered by created_at DESC)
  */
 export const getProcesses = async (userId: string) => {
   try {
     const { data, error } = await supabase
       .from('processes')
       .select('*')
-      .eq('user_id', userId)
       .order('created_at', { ascending: false })
 
     if (error) {
@@ -48,7 +47,7 @@ export const createProcess = async (userId: string) => {
       .from('processes')
       .insert({
         user_id: userId,
-        name: '',
+        name: 'Untitled Process',
         description: '',
       })
       .select()

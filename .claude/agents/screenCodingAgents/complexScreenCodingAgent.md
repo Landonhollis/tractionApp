@@ -71,11 +71,13 @@ The only exeption to the no exploration you have is if there is something that y
 
 
 ## other
-  - create types in the main file, not another types file. 
+  - create types in the main file, not another types file.
   - do not specify any font. you should leave all text as the default font.
-  - SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout. 
-  - you should create enums in this front end code, they are not to be left for the database. 
-  - when creating functions that alter states that exist in the app and in supabase, like theme, the function should update in the app imidiatley and in supabase. 
+  - SafeAreaView from 'react-native' is deprecated. Use 'react-native-safe-area-context' instead. SafeAreaProvider is already set up in root layout.
+  - you should create enums in this front end code, they are not to be left for the database.
+  - when creating functions that alter states that exist in the app and in supabase, like theme, the function should update in the app imidiatley and in supabase.
+  - Never use empty strings (`''`) for fieldswith `char_length() > 0` constraints. Always provide sensible defaults
+  - All React hooks must be called at top level of component, never inside conditionals, inline styles, or callbacks. Call hooks once and use variables.
 
 
 # Documentation

@@ -34,7 +34,7 @@ export async function getPersonalRocks(userId: string): Promise<DashboardRock[]>
     .from('rocks')
     .select('id, title')
     .eq('level', 'individual')
-    .eq('owner_id', userId)
+    .eq('user_id', userId)
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -95,7 +95,8 @@ export async function getPersonalMeasurables(userId: string): Promise<DashboardM
   const { data, error } = await supabase
     .from('metrics')
     .select('id, description, level, current_status, min, max, department')
-    .eq('owner_id', userId)
+    .eq('level', 'individual')
+    .eq('user_id', userId)
     .order('created_at', { ascending: false })
 
   if (error) {

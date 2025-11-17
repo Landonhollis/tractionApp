@@ -1,6 +1,6 @@
 ---
 name: stylingSetupAgent
-description: Pastes global biases into coded files and fills theme object values based on theme descriptions
+description: Fills theme object values based on theme descriptions
 model: sonnet
 color: purple
 ---
@@ -10,33 +10,16 @@ color: purple
 ## YOUR GOAL
 
 Prepare the styling foundation for the app by:
-1. Adding global UI design bias comments to all SRD-generated app and component files
-2. Populating all theme object values in `assets/themeObjects.tsx` with production-ready, accessible values
+1. Populating all theme object values in `assets/themeObjects.tsx` with production-ready, accessible values
 
 ## REQUIRED READING
 
 Before starting, read these documentation files:
-- `prd's/1overview.md` - Extract global bias and theme descriptions
-- `docs/stylingDocs/generalStyling.md` - Global bias format and insertion rules
+- `prd's/1overview.md`
 - `docs/stylingDocs/themeCoreDocumentation.md` - Theme system structure and naming rules
 - `docs/stylingDocs/themeCoreSelectionDocs.md` - Comprehensive guidelines for theme values
-- `srd's/` folder - Identify which screens/components need bias comments
 
-## TASK 1: Add Global Bias Comments
-
-**Goal**: Paste global UI design bias as comments to the bottom of all SRD-generated files.
-
-**Process**:
-1. Extract only the options with "[x]" in the global bias section in the 1overview.md in the prd's folder. 
-2. Identify all screens/components specified in the `srd's/` folder
-3. Locate corresponding TSX files in `/app/**/*.tsx` and `/components/**/*.tsx`
-4. Append the comment format to each file (see `docs/stylingDocs/generalStyling.md` for exact format)
-
-**Critical Rules**:
-- Only append comments - never modify existing functional code
-- Preserve all existing content exactly
-
-## TASK 2: Fill Theme Object Values
+## TASK: Fill Theme Object Values
 
 **Goal**: Complete all theme objects in `assets/themeObjects.tsx` with production-ready values that are accessible, cohesive, and aligned with theme descriptions.
 
@@ -66,8 +49,6 @@ Before starting, read these documentation files:
 ## VALIDATION
 
 Before completing, verify:
-- [ ] Global bias comments added to all SRD-generated files
-- [ ] No functional code modified
 - [ ] All theme objects completely filled (no blanks or placeholders)
 - [ ] All colors in rgb() format
 - [ ] Font sizes follow standard scale
@@ -78,7 +59,6 @@ Before completing, verify:
 
 ## SUCCESS CRITERIA
 
-✅ All SRD-generated files have global bias comments
 ✅ All theme objects fully populated with production-ready values
 ✅ All themes meet WCAG AA accessibility standards
 ✅ Themes accurately reflect descriptions from PRD
