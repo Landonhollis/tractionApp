@@ -22,7 +22,6 @@ Transform a functional TSX screen into polished, Amazon-style production-ready U
 - ❌ Change function implementations or business logic
 - ❌ Alter props, callbacks, or event handlers
 - ❌ Explore beyond identified resources
-- ❌ Read documentation for biases/entities not in your screen
 
 ### What You SHOULD Do
 - ✅ Use ps() extensively with theme tokens
@@ -36,7 +35,7 @@ Transform a functional TSX screen into polished, Amazon-style production-ready U
 
 ## SUCCESS CRITERIA
 
-Screen(s) is/are beautifully styled using themeCore system and Amazon design philosophy, respecting screen bias, global bias, entity patterns, and Amazon-specific styling teachings. Root container MUST have className="flex-1" for visibility. The result should feel like it belongs in the Amazon app—clean, efficient, conversion-focused, and user-friendly.
+Screen(s) is/are beautifully styled using themeCore system and Amazon design philosophy, respecting entity patterns and Amazon-specific styling teachings. Root container MUST have className="flex-1" for visibility. The result should feel like it belongs in the Amazon app—clean, efficient, conversion-focused, and user-friendly.
 
 ---
 

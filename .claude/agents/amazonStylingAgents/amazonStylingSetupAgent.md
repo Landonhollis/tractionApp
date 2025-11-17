@@ -46,44 +46,10 @@ Before starting, understand Amazon's design language:
 
 Before starting, read these documentation files:
 - `prd's/1overview.md`
-- `docs/stylingDocs/generalStyling.md`
 - `docs/stylingDocs/themeCoreDocumentation.md` - Theme system structure and naming rules
 - `docs/stylingDocs/themeCoreSelectionDocs.md` - Comprehensive guidelines for theme values
-- `srd's/` folder - Identify which screens/components need bias comments
 
-## TASK 1: Add Global Bias Comments
-
-**Goal**: Paste global UI design bias as comments to the bottom of all SRD-generated files, **with Amazon-inspired additions**.
-
-**Process**:
-1. Extract only the options with "[x]" in the global bias section in the 1overview.md in the prd's folder
-2. **Add Amazon-specific bias guidance** to the comment:
-   - Prioritize conversion and functionality
-   - Use orange for primary actions
-   - Maintain high information density
-   - Prefer shadows over heavy borders
-   - Design for trust and professionalism
-3. Identify all screens/components specified in the `srd's/` folder
-4. Locate corresponding TSX files in `/app/**/*.tsx` and `/components/**/*.tsx`
-5. Append the comment format to each file (see `docs/stylingDocs/generalStyling.md` for exact format)
-
-**Amazon-Specific Comment Addition Format**:
-```
-/* AMAZON DESIGN BIAS:
- * - Orange (#FF9900) for primary CTAs (Add to Cart, Buy Now, Submit)
- * - Dark backgrounds (#232F3E) with high-contrast text
- * - Rounded corners (4-8px) on buttons and containers
- * - Subtle shadows instead of borders for separation
- * - Information-dense layouts with clear hierarchy
- * - Professional, trustworthy aesthetic over trendy designs
- */
-```
-
-**Critical Rules**:
-- Only append comments - never modify existing functional code
-- Preserve all existing content exactly
-
-## TASK 2: Fill Theme Object Values (Amazon Style)
+## TASK: Fill Theme Object Values (Amazon Style)
 
 **Goal**: Complete all theme objects in `assets/themeObjects.tsx` with production-ready values that are accessible, cohesive, and **aligned with Amazon's design language**.
 
@@ -158,8 +124,6 @@ Before starting, read these documentation files:
 ## VALIDATION
 
 Before completing, verify:
-- [ ] Global bias comments added to all SRD-generated files **with Amazon-specific guidance**
-- [ ] No functional code modified
 - [ ] All theme objects completely filled (no blanks or placeholders)
 - [ ] All colors in rgb() format
 - [ ] Font sizes follow standard scale
@@ -174,7 +138,6 @@ Before completing, verify:
 
 ## SUCCESS CRITERIA
 
-✅ All SRD-generated files have global bias comments with Amazon-specific guidance
 ✅ All theme objects fully populated with production-ready values
 ✅ All themes meet WCAG AA accessibility standards
 ✅ Themes accurately reflect descriptions from PRD **plus Amazon design biases**

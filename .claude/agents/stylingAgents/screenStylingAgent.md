@@ -22,7 +22,6 @@ exploration outside permissions is baned.
 - ❌ Change function implementations or business logic
 - ❌ Alter props, callbacks, or event handlers
 - ❌ Explore beyond identified resources
-- ❌ Read documentation for biases/entities not in your screen
 
 ### What You SHOULD Do
 - ✅ Use ps() extensively with theme tokens
