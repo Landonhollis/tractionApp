@@ -336,13 +336,14 @@ export const allThemes = {
 - This is the function that goes in the style prop, it takes native wind looking styles found in the theme objects and parses them into styles that the style prop understands
 - ps just stands for "parse styles"
 - this is a utility function and should go in the 'utilities' folder
+- The ps function uses a global ct that is automatically set by the AccountProvider
 ```tsx
 // Parse styles function - maps theme keys to React Native styles
   const ps = (styleString: string) => {
     const styles = styleString
       .split(' ')
       .filter(Boolean)
-      .map(className => ct[className as keyof typeof ct])
+      .map(className => globalCt[className as keyof typeof globalCt])
       .filter(Boolean)
 
     return Object.assign({}, ...styles)
@@ -431,8 +432,8 @@ export function ThemeProvider({ children }: PropsWithChildren) {
   // Get current theme object based on theme name
   const ct = getCurrentTheme(ctn);
 
-  // Parse styles function that uses current theme
-  const parseStyles = (styleString: string) => ps(styleString, ct);
+  // Parse styles function - ps is used directly without needing ct passed
+  const parseStyles = (styleString: string) => ps(styleString);
 
   // Load theme from storage on app start
   useEffect(() => {

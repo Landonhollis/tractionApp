@@ -4,7 +4,7 @@ import { getAccountData } from '../services/accountProviderServices'
 import { createUserAccount } from '../services/authServices'
 import { allThemes, Ctn, Ct } from '../assets/themeObjects'
 import { setTheme as setThemeService } from '../services/setTheme'
-import { ps as psUtil } from '../utilities/ps'
+import { ps, setGlobalCt } from '../utilities/ps'
 import type { Session } from '@supabase/supabase-js'
 
 interface Account {
@@ -40,6 +40,11 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
   const [ctn, setCtn] = useState<Ctn>('theme1')
   const ct = allThemes[ctn] as Ct
   const [themeLoading, setThemeLoading] = useState(true)
+
+  // Update global ct whenever theme changes
+  useEffect(() => {
+    setGlobalCt(ct)
+  }, [ct])
 
   // Authentication functions
   useEffect(() => {
@@ -114,11 +119,6 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
     setCtn(themeName)
     await setThemeService(themeName)
     setThemeLoading(false)
-  }
-
-  // ps function wrapper that includes the current theme
-  const ps = (styleString: string) => {
-    return psUtil(styleString, ct)
   }
 
   return (

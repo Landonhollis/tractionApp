@@ -21,13 +21,6 @@ n/a
 you have access to the supabase mcp server that conects to this project, as well as context7 mcp for documentaion. 
 
 
-## Global UI design bias - ONLY FOR STYLING AGENTS!!
-[ ]: presentational - visually rich with fancy fonts, large graphics, and generous whitespace. 
-[x]: businesness management - function first, graphs are less visual, more numeric. display is more plain, but more clear. 
-[ ]: shop - conversion first = clear checkout flow, smooth transitions, bold CTA's, high contrast palate. 
-[x]: custom: emphasis on well defined sections, very distinctivley seperated. this is because of the amount of business information that needs to be easily scrolled through. 
-
-- custom global styles examples (just a reminder for humans): text size, font selection, color placement, contrast, statefull creativity, component design specifications, minimalism level, level of 3-d'ness, polish specifications. 
 
 ## Theme Descriptions - for stylingSetupAgent ONLY!
 Entities to describe
@@ -38,7 +31,55 @@ Entities to describe
     - filled in (components and sections filled withe the color) or outlined (sections and components are generally similar to background and the seperation is just outline). 
     - font style
 The following are the Themes(x/10 is an adjactive modifier. ex: '7/10lage' means mostly large, but not all the way large. '2/10 large' would still be large, but just a little bit large)
-    theme1: very dark, gold accent, meduim contrast, faint white shadows, medium border radius, medium border width, outlined. 
-    theme2: somewhat dark, like navy blue dark, peach variant accents, 6/10large border widths and large rounded corners, filled in, ariel type fonts nothing like times new roman. 
-    theme3: 5/10dark, like ash grey, dark orange and ocean accent colors. small rounded corners, small border width, filled in. 
-    theme4: light, 3/10tan tint, darker shades get closer to a brown, navy blue and natural blue accents. medium corner roundness, border width, and shadows. filled in, fonts close to times new roman, nothing like ariel. 
+### theme1
+**Dark, charcoal + emerald**
+
+- Very dark charcoal base  
+- Emerald green accents  
+- High contrast  
+- Faint light-gray shadows  
+- Medium border radius  
+- Small/medium border width  
+- Outlined components  
+- Clean sans-serif fonts (Helvetica/Roboto)  
+
+---
+
+### theme2
+**Midnight navy + coral/lavender**
+
+- Somewhat dark (deep midnight blue base)  
+- Coral + lavender accent colors  
+- Medium contrast  
+- Large border widths (~6/10)  
+- Large rounded corners  
+- Filled-in components  
+- Modern sans-serif fonts (no serif look)  
+
+---
+
+### theme3
+**Light mist grey + mustard & teal**
+
+- Light theme, misty grey base  
+- 3/10 warm tint  
+- Mustard yellow + teal accents  
+- Moderate contrast  
+- Small rounded corners  
+- Small border width  
+- Filled-in components  
+- Geometric serif fonts (Merriweather/Charter style)  
+
+---
+
+### theme4
+**Sandy beige + slate blue & forest green**
+
+- Light theme, sandy beige base  
+- Brownish tint around 3/10  
+- Slate blue + forest green accents  
+- Medium shadows  
+- Medium corner roundness  
+- Medium border width  
+- Filled-in components  
+- Classic serif fonts (Georgia/transitional serif)  

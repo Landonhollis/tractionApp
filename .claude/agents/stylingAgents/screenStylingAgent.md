@@ -99,23 +99,14 @@ The theme core is the custom styling system you shoul use. it is a function that
 - you should go look at the theme objects of this project in the 'assets/themeObjects.tsx'.
 
 
-the following is the ps() function that you should use in the style props of the tsx files. the account provider that should be imported on every screen.
+The ps() function uses a global theme object that is automatically set by the AccountProvider. Simply import ps from utilities/ps and call it with your style string.
 ```ts
-import { Ct } from '../assets/themeObjects'
-//make sure this path is correct.
+import { ps } from '../utilities/ps'
+// or from '@/utilities/ps' depending on your path aliases
 
-export const ps = (styleString: string, ct: Ct) => {
-  const styles = styleString
-    .split(' ')
-    .filter(Boolean)
-    .map(className => ct[className as keyof typeof ct])
-    .filter(Boolean)
-
-  return Object.assign({}, ...styles)
-}
+// Use ps with just the style string - no ct needed
+style={ps('bg-2 br-2')}
 ```
-
-**CRITICAL**: `ps` comes from `useAccount()` in the parent component. Child components MUST receive `ps` as a prop—never use it directly without adding it to the component's props type and parameters.
 
 ## when to use
 this is the order of priority of styling methods. 
